@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   IconButton,
   Menu,
@@ -9,12 +9,12 @@ import {
   Divider,
   MenuList,
   MenuItem,
-} from "@mui/material";
-import { COLORS } from "@values/colors";
-import { getMenuListItemsMobile } from "./ItemsMenu";
-import MenuIcon from "@mui/icons-material/Menu";
-import { useThemeContext } from "@common/ThemeContext";
-import { useAuth } from "@auth/AuthContext";
+} from '@mui/material';
+import { COLORS } from '@values/colors';
+import { getMenuListItemsMobile } from './ItemsMenu';
+import MenuIcon from '@mui/icons-material/Menu';
+import { useThemeContext } from '@common/ThemeContext';
+import { useAuth } from '@auth/AuthContext';
 
 //
 
@@ -55,8 +55,8 @@ const MenuMobile: React.FunctionComponent = () => {
         <MenuIcon
           sx={{
             color:
-              theme.palette.mode === "dark" ? COLORS.white : COLORS.grey_dark,
-            fontSize: "40px",
+              theme.palette.mode === 'dark' ? COLORS.white : COLORS.grey_dark,
+            fontSize: '40px',
           }}
         />
       </IconButton>
@@ -66,12 +66,12 @@ const MenuMobile: React.FunctionComponent = () => {
         open={Boolean(anchorEl)} // Open the menu if anchorEl is not null
         onClose={handleMenuClose} // Close the menu
         anchorOrigin={{
-          vertical: "top",
-          horizontal: "right",
+          vertical: 'top',
+          horizontal: 'right',
         }}
         transformOrigin={{
-          vertical: "top",
-          horizontal: "right",
+          vertical: 'top',
+          horizontal: 'right',
         }}
       >
         <List>
@@ -82,7 +82,7 @@ const MenuMobile: React.FunctionComponent = () => {
                 sx={(theme) => ({
                   padding: 0,
                   color:
-                    theme.palette.mode === "dark" ? COLORS.white : COLORS.black,
+                    theme.palette.mode === 'dark' ? COLORS.white : COLORS.black,
                 })}
               >
                 <ListItemText
@@ -96,11 +96,11 @@ const MenuMobile: React.FunctionComponent = () => {
         <Divider />
 
         <MenuList>
-          <MenuItem onClick={navigateToLink("/configuracion")}>
+          <MenuItem onClick={navigateToLink('/configuracion')}>
             <ListItemText>Configuración</ListItemText>
           </MenuItem>
           <MenuItem onClick={logOutHandler}>
-            <ListItemText sx={{ fontSize: "1.9rem" }}>Logout</ListItemText>
+            <ListItemText sx={{ fontSize: '1.9rem' }}>Logout</ListItemText>
           </MenuItem>
         </MenuList>
       </Menu>

@@ -7,7 +7,7 @@ import { toggleButtonClasses } from "@mui/material/ToggleButton";
 import CheckBoxOutlineBlankRoundedIcon from "@mui/icons-material/CheckBoxOutlineBlankRounded";
 import CheckRoundedIcon from "@mui/icons-material/CheckRounded";
 import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded";
-import { gray, brand } from "@common/theme/themePrimitives";
+import { gray, brand } from "../themePrimitives";
 import { COLORS } from "@values/colors";
 
 export const inputsCustomizations: Components<Theme> = {

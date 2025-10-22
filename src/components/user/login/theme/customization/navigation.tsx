@@ -4,7 +4,7 @@ import { dividerClasses } from "@mui/material/Divider";
 import { menuItemClasses } from "@mui/material/MenuItem";
 import { selectClasses } from "@mui/material/Select";
 import { tabClasses } from "@mui/material/Tab";
-import { gray, brand } from "@common/theme/themePrimitives";
+import { gray, brand } from "../themePrimitives";
 import { COLORS } from "@values/colors";
 
 export const navigationCustomizations: Components<Theme> = {

@@ -1,25 +1,25 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import React from "react";
-import { useState, useEffect } from "react";
+import React from 'react';
+import { useState, useEffect } from 'react';
 
-import { controlDataOri, controlDataFc, controlDataSp } from "../../interfaces";
+import { controlDataOri, controlDataFc, controlDataSp } from '@interfaces';
 
-import { updateOri } from "../../hooks/HookUpdateOri";
-import { HookUpdateSp } from "../../hooks/HookUpdateSp";
-import { HookUpdateFc } from "../../hooks/HookUpdateFc";
+import { updateOri } from '@hooks/HookUpdateOri';
+import { HookUpdateSp } from '@hooks/HookUpdateSp';
+import { HookUpdateFc } from '@hooks/HookUpdateFc';
 
-import Box from "@mui/system/Box";
+import Box from '@mui/system/Box';
 
-import moment from "moment";
+import moment from 'moment';
 
 //import ControlBar from "../control/UI/ControlBar";
-import MonitorComponent from "../monitor/MonitorComponent";
-import MonitorComponentOri from "../monitor/MonitorComponentOri";
+import MonitorComponent from '../monitor/MonitorComponent';
+import MonitorComponentOri from '../monitor/MonitorComponentOri';
 
-import { MONITOR_TIME_REFRESH } from "../../constants/global";
-import MonitorHeart from "./MonitorHeart";
+import { MONITOR_TIME_REFRESH } from '@constants/global';
+import MonitorHeart from './MonitorHeart';
 
-const FORMAT = "HH:mm:ss";
+const FORMAT = 'HH:mm:ss';
 
 const Monitor = () => {
   const initialHourMinutes = () => {
@@ -95,10 +95,10 @@ const Monitor = () => {
   const oriView = (
     <Box
       sx={{
-        border: "2px solid #eee",
-        borderRadius: "10px",
-        marginBttom: "10px",
-        width: "500px",
+        border: '2px solid #eee',
+        borderRadius: '10px',
+        marginBttom: '10px',
+        width: '500px',
       }}
     >
       <MonitorComponentOri
@@ -115,15 +115,15 @@ const Monitor = () => {
   const spView = (
     <Box
       sx={{
-        border: "2px solid #eee",
-        borderRadius: "10px",
-        marginBttom: "10px",
-        width: "500px",
+        border: '2px solid #eee',
+        borderRadius: '10px',
+        marginBttom: '10px',
+        width: '500px',
       }}
     >
       {dataLoadSp && (
         <MonitorComponent
-          title={"Sp02"}
+          title={'Sp02'}
           minValue={1}
           maxValue={100}
           value={dataLoadSp.sp!}
@@ -138,15 +138,15 @@ const Monitor = () => {
   const fcView = (
     <Box
       sx={{
-        border: "2px solid #eee",
-        borderRadius: "10px",
-        marginBttom: "10px",
-        width: "500px",
+        border: '2px solid #eee',
+        borderRadius: '10px',
+        marginBttom: '10px',
+        width: '500px',
       }}
     >
       {dataLoadFc && (
         <MonitorComponent
-          title={"Fc"}
+          title={'Fc'}
           minValue={1}
           maxValue={300}
           value={dataLastFc[0].fc!}
@@ -173,15 +173,15 @@ const Monitor = () => {
           <Box
             sx={{
               background: "url('../masimo3.png') no-repeat",
-              paddingTop: "120px",
-              paddingLeft: "460px",
-              paddingRight: "20px",
+              paddingTop: '120px',
+              paddingLeft: '460px',
+              paddingRight: '20px',
             }}
           >
             <Box
               sx={{
-                width: "560px",
-                paddingBottom: "100px",
+                width: '560px',
+                paddingBottom: '100px',
               }}
             >
               <div>{dataLoadFc && heartView}</div>

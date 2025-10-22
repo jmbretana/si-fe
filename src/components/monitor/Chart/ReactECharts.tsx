@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 // React-ECharts.tsx
 
-import React, { useRef, useEffect } from "react";
-import { init, getInstanceByDom } from "echarts";
-import type { CSSProperties } from "react";
-import type { EChartsOption, ECharts, SetOptionOpts } from "echarts";
+import React, { useRef, useEffect } from 'react';
+import { init, getInstanceByDom } from 'echarts';
+import type { CSSProperties } from 'react';
+import type { EChartsOption, ECharts, SetOptionOpts } from 'echarts';
 
 export interface ReactEChartsProps {
   option: EChartsOption;
   style?: CSSProperties;
   settings?: SetOptionOpts;
   loading?: boolean;
-  theme?: "light" | "dark";
+  theme?: 'light' | 'dark';
 }
 
 export function ReactECharts({
@@ -35,12 +35,12 @@ export function ReactECharts({
     function resizeChart() {
       chart?.resize();
     }
-    window.addEventListener("resize", resizeChart);
+    window.addEventListener('resize', resizeChart);
 
     // Return cleanup function
     return () => {
       chart?.dispose();
-      window.removeEventListener("resize", resizeChart);
+      window.removeEventListener('resize', resizeChart);
     };
   }, [theme]);
 
@@ -61,5 +61,7 @@ export function ReactECharts({
     }
   }, [loading, theme]);
 
-  return <div ref={chartRef} style={{ width: "100%", height: "100%", ...style }} />;
+  return (
+    <div ref={chartRef} style={{ width: '100%', height: '100%', ...style }} />
+  );
 }

@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import React from "react";
-import { useEffect, useState } from "react";
-import { optionEChart } from "./OptionEChart";
+import React from 'react';
+import { useEffect, useState } from 'react';
+import { optionEChart } from './OptionEChart';
 
-import "../monitorStyle.css";
+import '../monitorStyle.css';
 
-import { ReactECharts } from "./ReactECharts";
+import { ReactECharts } from './ReactECharts';
 
-import { MONITOR_TIME_REFRESH } from "../../../constants/global";
-import Box from "@mui/system/Box";
+import { MONITOR_TIME_REFRESH } from '@constants/global';
+import Box from '@mui/system/Box';
 
 interface MonitorChartProps {
   title: string;
@@ -20,22 +20,6 @@ interface MonitorChartProps {
   hourMinutes: string;
   //
 }
-
-/*
-    container: {
-      display: "flex",
-      alignItems: "center",
-    },
-
-    divChart: {
-      borderRight: "#333 1px solid",
-      height: "190px",
-      width: "300px",
-      paddingRight: "15px",
-      marginRight: "5px",
-    },
-*/
-
 const MonitorChart: React.FunctionComponent<MonitorChartProps> = (props) => {
   const [option, setOption] = useState({});
 
@@ -46,8 +30,8 @@ const MonitorChart: React.FunctionComponent<MonitorChartProps> = (props) => {
         props.maxValue,
         props.minValue,
         props.xAxis,
-        props.dataLoad
-      )
+        props.dataLoad,
+      ),
     );
   }, []);
 
@@ -60,8 +44,8 @@ const MonitorChart: React.FunctionComponent<MonitorChartProps> = (props) => {
           props.maxValue,
           props.minValue,
           props.xAxis,
-          list
-        )
+          list,
+        ),
       );
     }, MONITOR_TIME_REFRESH);
   }, [props.hourMinutes]);
@@ -69,8 +53,8 @@ const MonitorChart: React.FunctionComponent<MonitorChartProps> = (props) => {
   //
 
   const monitorView = (
-    <Box className={"container"}>
-      <div className={"divChart"}>
+    <Box className={'container'}>
+      <div className={'divChart'}>
         <ReactECharts option={option} />
       </div>
 
@@ -81,11 +65,11 @@ const MonitorChart: React.FunctionComponent<MonitorChartProps> = (props) => {
               <p className="value-monitor">{props.lastValue}</p>
             </div>
             <div className="col-4 d-flex align-self-center">
-              {props.title === "Ori" && <span className="lpm-value">Ori</span>}
-              {props.title === "Sp02" && (
+              {props.title === 'Ori' && <span className="lpm-value">Ori</span>}
+              {props.title === 'Sp02' && (
                 <span className="lpm-value">% Sp02</span>
               )}
-              {props.title === "Fc" && <span className="lpm-value">lpm</span>}
+              {props.title === 'Fc' && <span className="lpm-value">lpm</span>}
             </div>
           </div>
         </div>

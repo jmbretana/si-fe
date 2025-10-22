@@ -1,0 +1,8 @@
+const MONITOR_TIME_REFRESH = 1000;
+const MONITOR_LEN = 120;
+
+const ORI_COLOR = '';
+const SP_COLOR = '#eafa6a';
+const FC_COLOR = '#48de30';
+
+export { MONITOR_LEN, MONITOR_TIME_REFRESH, ORI_COLOR, SP_COLOR, FC_COLOR };

@@ -5,14 +5,9 @@ import LayoutPrivate from '@layout/LayoutPrivate';
 import LayoutRoot from '@layout/LayoutRoot';
 
 import Login from '@pages/PageLogin';
-import Dashboard from '@pages/PageDashboard.tsx';
+import Home from '@pages/PageHome';
 
-import ClientsComponent from '@components/clients';
-import ConfigComponent from '@components/configParams';
-import ProductsComponent from '@components/products';
-import ProductsFormComponent from '@components/products/ProductsFormComponent.tsx';
-import Provider from '@components/provider';
-import Providers from '@components/providers';
+import Monitor from '@components/monitor';
 
 import ProtectedRoute from '@layout/ProtectedRoute.tsx';
 
@@ -36,28 +31,14 @@ export const router = createBrowserRouter([
       },
 
       {
-        path: '/dashboard',
+        path: '/home',
         element: <LayoutPrivate />,
         children: [
           {
             index: true,
             element: (
               <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            ),
-          },
-        ],
-      },
-      {
-        path: '/clientes',
-        element: <LayoutPrivate />,
-        children: [
-          {
-            index: true,
-            element: (
-              <ProtectedRoute>
-                <ClientsComponent />
+                <Home />
               </ProtectedRoute>
             ),
           },
@@ -65,73 +46,14 @@ export const router = createBrowserRouter([
       },
 
       {
-        path: '/configuracion',
+        path: '/monitor',
         element: <LayoutPrivate />,
         children: [
           {
             index: true,
             element: (
               <ProtectedRoute>
-                <ConfigComponent />
-              </ProtectedRoute>
-            ),
-          },
-        ],
-      },
-      {
-        path: '/productos',
-        element: <LayoutPrivate />,
-        children: [
-          {
-            index: true,
-            element: (
-              <ProtectedRoute>
-                <ProductsComponent />
-              </ProtectedRoute>
-            ),
-          },
-        ],
-      },
-
-      {
-        path: '/producto/:id',
-        element: <LayoutPrivate />,
-        children: [
-          {
-            index: true,
-            element: (
-              <ProtectedRoute>
-                <ProductsFormComponent />
-              </ProtectedRoute>
-            ),
-          },
-        ],
-      },
-
-      {
-        path: '/proveedores',
-        element: <LayoutPrivate />,
-        children: [
-          {
-            index: true,
-            element: (
-              <ProtectedRoute>
-                <Providers />
-              </ProtectedRoute>
-            ),
-          },
-        ],
-      },
-
-      {
-        path: '/proveedor/:id',
-        element: <LayoutPrivate />,
-        children: [
-          {
-            index: true,
-            element: (
-              <ProtectedRoute>
-                <Provider />
+                <Monitor />
               </ProtectedRoute>
             ),
           },
@@ -140,7 +62,7 @@ export const router = createBrowserRouter([
 
       {
         path: '*',
-        element: <Navigate to="/presupuestos" replace />,
+        element: <Navigate to="/home" replace />,
       },
     ],
   },
