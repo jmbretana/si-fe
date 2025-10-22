@@ -1,145 +1,68 @@
-export const formatMoney = (num: number) => {
-  try {
-    const vNum = Number(num.toFixed(2));
-    const format = Intl.NumberFormat("de-DE").format(vNum);
-    return `${format}`;
-  } catch (e: any) {
-    console.error(e);
-    return "0";
-  }
+export function camelize(str: string) {
+    return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+        return index === 0 ? word.toUpperCase() : word.toLowerCase();
+    }).replace(/\s+/g, '')
+}
+
+export const transformToDecimal = (value: number | undefined) => {
+    if (value !== undefined) {
+        if (value === 0) return "0";
+        if (value && value < 10) return "0." + value + "0";
+        if (value && value === 10) return "1";
+    }
+    else return "";
 };
 
-export const formatMoneyWithSymbol = (num: number) => {
-  try {
-    let vNum = num < 0 ? num * -1 : num;
-    vNum = Number(vNum.toFixed(2));
-    const format = Intl.NumberFormat("de-DE").format(vNum);
+export const transformToDecimalNumber = (value: number) => {
+    let decimal = "";
 
-    let value;
-
-    if (num < 0) {
-      value = `- $ ${format}`;
+    if (value < 10) {
+        decimal = "0." + value + "0";
     } else {
-      value = `$ ${format}`;
+        decimal = "1";
     }
 
-    return value;
-  } catch (e: any) {
-    console.error(e);
-    return "0";
-  }
+    return Number(decimal)
 };
 
-export const formatTimestamp = (timestamp: string): string => {
-  try {
-    const date = new Date(timestamp);
-    const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0"); // Months are zero-based
-    const year = date.getFullYear();
-    const hours = String(date.getHours()).padStart(2, "0");
-    const minutes = String(date.getMinutes()).padStart(2, "0");
-    const seconds = String(date.getSeconds()).padStart(2, "0");
+export const invertDecimal = (value: number) => {
+    let v = 1;
 
-    return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
-  } catch (e: any) {
-    console.error(e);
-    return "";
-  }
-};
+    switch (value) {
+        case 0:
+            v = 0;
+            break;
+        case 0.1:
+            v = 1;
+            break;
+        case 0.2:
+            v = 2;
+            break;
+        case 0.3:
+            v = 3;
+            break;
+        case 0.4:
+            v = 4;
+            break;
+        case 0.5:
+            v = 5;
+            break;
+        case 0.6:
+            v = 6;
+            break;
+        case 0.7:
+            v = 7;
+            break;
+        case 0.8:
+            v = 8;
+            break;
+        case 0.9:
+            v = 9;
+            break;
+        case 1:
+            v = 10;
+            break;
+    }
 
-export const getFechaActual = (): string => {
-  try {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, "0"); // Months are zero-based
-    const day = String(now.getDate()).padStart(2, "0");
-
-    return `${day}/${month}/${year}`;
-  } catch (e: any) {
-    console.error(e);
-    return "";
-  }
-};
-
-export const formatPhoneNumber = (phoneNumber?: string) => {
-  // Eliminar cualquier carácter no numérico
-  if (!phoneNumber) {
-    return "";
-  }
-
-  const cleaned = ("" + phoneNumber).replace(/\D/g, "");
-
-  // Verificar si el número tiene al menos 4 dígitos
-  if (cleaned.length < 4) {
-    return phoneNumber;
-  }
-
-  const last = cleaned.slice(-4);
-  const front = cleaned.slice(0, -4);
-
-  let frontLast = "";
-  let frontFirst = "";
-
-  if (front.length > 4) {
-    frontLast = front.slice(-4);
-    frontFirst = "(" + front.slice(0, -4) + ") ";
-  } else {
-    frontFirst = "(11) ";
-    frontLast = front;
-  }
-
-  return frontFirst + frontLast + "-" + last;
-};
-
-export const capitalizeFirstLetter = (string?: string) => {
-  if (string) {
-    const value = string?.toLowerCase();
-    return value.charAt(0).toUpperCase() + value.slice(1);
-  } else return "";
-};
-
-export const capitalizeEachWord = (phrase?: string) => {
-  if (!phrase) return "";
-
-  return phrase
-    .toLowerCase()
-    .split(" ")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
-};
-
-export const transformDateToISO = (date: string): string => {
-  try {
-    // Dividir la fecha en día, mes y año
-    const [day, month, year] = date.split("/");
-
-    // Retornar la fecha en formato ISO (yyyy-mm-dd)
-    return `${year}-${month}-${day}`;
-  } catch (e: any) {
-    console.error("Error al transformar la fecha:", e);
-    return "";
-  }
-};
-
-export const formatDateToDDMMYYYY = (isoDate: string): string => {
-  try {
-    const date = new Date(isoDate);
-
-    // Extraer día, mes y año
-    const day = String(date.getUTCDate()).padStart(2, "0");
-    const month = String(date.getUTCMonth() + 1).padStart(2, "0"); // Los meses son base 0
-    const year = date.getUTCFullYear();
-
-    // Retornar la fecha en formato dd/mm/yyyy
-    return `${day}/${month}/${year}`;
-  } catch (e: any) {
-    console.error("Error al formatear la fecha:", e);
-    return "";
-  }
-};
-
-export const roundBalance = (num?: number) => {
-  let number = num || 0;
-  if (number < 1 && number > -1) number = 0;
-  return number;
+    return v;
 };
