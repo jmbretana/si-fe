@@ -7,6 +7,7 @@ import LayoutRoot from '@layout/LayoutRoot';
 import Login from '@pages/PageLogin';
 import Home from '@pages/PageHome';
 
+import Control from '@components/control';
 import Monitor from '@components/monitor';
 
 import ProtectedRoute from '@layout/ProtectedRoute.tsx';
@@ -54,6 +55,21 @@ export const router = createBrowserRouter([
             element: (
               <ProtectedRoute>
                 <Monitor />
+              </ProtectedRoute>
+            ),
+          },
+        ],
+      },
+
+      {
+        path: '/control',
+        element: <LayoutPrivate />,
+        children: [
+          {
+            index: true,
+            element: (
+              <ProtectedRoute>
+                <Control />
               </ProtectedRoute>
             ),
           },

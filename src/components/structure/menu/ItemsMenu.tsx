@@ -30,65 +30,11 @@ export const getMenuListItems = (userRole?: string) => {
       name: 'monitor',
     },
     {
-      key: 4,
-      text: 'Balances',
-      icon: <AccountBalanceIcon />,
-      link: '',
-      name: 'balance',
-      options: [
-        {
-          key: 0,
-          text: 'Balances',
-          icon: <AccountBalanceIcon />,
-          link: '/balance',
-          name: 'ctacte',
-          parent: 'balance',
-        },
-        {
-          key: 0,
-          text: 'Caja',
-          icon: <PointOfSaleIcon />,
-          link: '/caja',
-          name: 'caja',
-          parent: 'balance',
-        },
-      ],
-    },
-    {
       key: 1,
-      text: 'Clientes',
+      text: 'Control',
       icon: <GroupOutlinedIcon />,
-      link: '/clientes',
-      name: 'cliente',
-    },
-    {
-      key: 2,
-      text: 'Productos',
-      icon: <Inventory2OutlinedIcon />,
-      link: '/productos',
-      name: 'producto',
-    },
-    {
-      key: 5,
-      text: 'Distribucion',
-      icon: <LocalShippingIcon />,
-      link: '/distribucion',
-      name: 'distribucion',
-    },
-    {
-      key: 5,
-      text: 'Proveedores',
-      icon: <StorefrontIcon />,
-      link: '/proveedores',
-      name: 'proveedores',
-    },
-    {
-      key: 0,
-      text: 'Dashboard',
-      icon: <DashboardOutlinedIcon />,
-      link: '/dashboard',
-      name: 'dashboard',
-      requiresRole: true, // Marca que requiere verificación de rol
+      link: '/control',
+      name: 'control',
     },
   ];
 
