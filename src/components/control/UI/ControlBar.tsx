@@ -1,35 +1,54 @@
-import React from 'react'
+import React from 'react';
 import { Button } from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { useState } from "react";
+import { useState } from 'react';
+import { Box } from '@mui/material';
 
 interface ControlBarProps {
-    beep: boolean,
-    //
-    onChangeBeep: (beep) => void;
+  beep: boolean;
+  //
+  onChangeBeep: (beep) => void;
 }
 
 const ControlBar: React.FunctionComponent<ControlBarProps> = (props) => {
-    const [beep, setBeep] = useState<boolean>(props.beep);
+  const [beep, setBeep] = useState<boolean>(props.beep);
 
-    const enableBeep = () => {
-        setBeep(true);
-        props.onChangeBeep(true);
-    };
+  const enableBeep = () => {
+    setBeep(true);
+    props.onChangeBeep(true);
+  };
 
-    const disableBeep = () => {
-        setBeep(false);
-        props.onChangeBeep(false);
-    };
+  const disableBeep = () => {
+    setBeep(false);
+    props.onChangeBeep(false);
+  };
 
-    props.beep;
+  props.beep;
 
-    return (
-        <div className='d-flex pb-3 flex-row-reverse'>
-            {!beep && (<Button variant="contained" startIcon={<NotificationsIcon />} color="success" onClick={enableBeep}>Activar</Button>)}
-            {beep && (<Button variant="outlined" startIcon={<NotificationsIcon />} color="success" onClick={disableBeep}>Desactivar</Button>)}
-        </div >
-    )
-}
+  return (
+    <Box className="d-flex pb-3 flex-row-reverse">
+      {!beep && (
+        <Button
+          variant="contained"
+          startIcon={<NotificationsIcon />}
+          color="success"
+          onClick={enableBeep}
+        >
+          Activar
+        </Button>
+      )}
+      {beep && (
+        <Button
+          variant="outlined"
+          startIcon={<NotificationsIcon />}
+          color="success"
+          onClick={disableBeep}
+        >
+          Desactivar
+        </Button>
+      )}
+    </Box>
+  );
+};
 
-export default ControlBar
+export default ControlBar;

@@ -18,13 +18,15 @@ interface InputUpDownComponentProps {
 const InputUpDownComponent: React.FunctionComponent<
   InputUpDownComponentProps
 > = (props) => {
-  const [newValue, setNewValue] = useState<string>(props.value.toString());
+  const [newValue, setNewValue] = useState<string>(
+    props.value ? props.value.toString() : '',
+  );
 
   useEffect(() => {
     if (props.ori) {
-      setNewValue(transformToDecimal(Number(props.value)));
+      setNewValue(transformToDecimal(Number(props.value))!);
     } else {
-      setNewValue(props.value.toString());
+      setNewValue(props.value ? props.value.toString() : '');
     }
   }, [props.value]);
 
@@ -61,14 +63,14 @@ const InputUpDownComponent: React.FunctionComponent<
       if (props.ori) {
         value = Number(transformToDecimal(v));
       } else {
-        value = v.toString();
+        value = v ? v.toString() : '';
       }
     } else value = 0;
 
     if (value > props.max) value = props.max;
     if (value < props.min) value = props.min;
 
-    setNewValue(value.toString());
+    setNewValue(value ? value.toString() : '');
     props.changeValue(value);
   };
 
