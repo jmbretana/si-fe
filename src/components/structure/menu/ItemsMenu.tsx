@@ -1,17 +1,17 @@
-import React from "react";
-import { COLORS } from "@values/colors";
+import React from 'react';
+import { COLORS } from '@values/colors';
 
-import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
-import Inventory2OutlinedIcon from "@mui/icons-material/Inventory2Outlined";
-import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
-import GroupOutlinedIcon from "@mui/icons-material/GroupOutlined";
-import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
-import LocalShippingIcon from "@mui/icons-material/LocalShipping";
-import StorefrontIcon from "@mui/icons-material/Storefront";
-import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
+import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
+import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
+import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
+import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import StorefrontIcon from '@mui/icons-material/Storefront';
+import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
 
 // Roles permitidos para ver el Dashboard
-const DASHBOARD_ALLOWED_ROLES = ["admin", "superadmin"];
+const DASHBOARD_ALLOWED_ROLES = ['admin', 'superadmin'];
 
 // Función para verificar si un usuario puede ver el Dashboard
 const canViewDashboard = (userRole?: string): boolean => {
@@ -24,70 +24,70 @@ export const getMenuListItems = (userRole?: string) => {
   const allItems = [
     {
       key: 3,
-      text: "Presupuestos",
+      text: 'Monitor',
       icon: <MonetizationOnOutlinedIcon />,
-      link: "/presupuestos",
-      name: "presupuesto",
+      link: '/monitor',
+      name: 'monitor',
     },
     {
       key: 4,
-      text: "Balances",
+      text: 'Balances',
       icon: <AccountBalanceIcon />,
-      link: "",
-      name: "balance",
+      link: '',
+      name: 'balance',
       options: [
         {
           key: 0,
-          text: "Balances",
+          text: 'Balances',
           icon: <AccountBalanceIcon />,
-          link: "/balance",
-          name: "ctacte",
-          parent: "balance",
+          link: '/balance',
+          name: 'ctacte',
+          parent: 'balance',
         },
         {
           key: 0,
-          text: "Caja",
+          text: 'Caja',
           icon: <PointOfSaleIcon />,
-          link: "/caja",
-          name: "caja",
-          parent: "balance",
+          link: '/caja',
+          name: 'caja',
+          parent: 'balance',
         },
       ],
     },
     {
       key: 1,
-      text: "Clientes",
+      text: 'Clientes',
       icon: <GroupOutlinedIcon />,
-      link: "/clientes",
-      name: "cliente",
+      link: '/clientes',
+      name: 'cliente',
     },
     {
       key: 2,
-      text: "Productos",
+      text: 'Productos',
       icon: <Inventory2OutlinedIcon />,
-      link: "/productos",
-      name: "producto",
+      link: '/productos',
+      name: 'producto',
     },
     {
       key: 5,
-      text: "Distribucion",
+      text: 'Distribucion',
       icon: <LocalShippingIcon />,
-      link: "/distribucion",
-      name: "distribucion",
+      link: '/distribucion',
+      name: 'distribucion',
     },
     {
       key: 5,
-      text: "Proveedores",
+      text: 'Proveedores',
       icon: <StorefrontIcon />,
-      link: "/proveedores",
-      name: "proveedores",
+      link: '/proveedores',
+      name: 'proveedores',
     },
     {
       key: 0,
-      text: "Dashboard",
+      text: 'Dashboard',
       icon: <DashboardOutlinedIcon />,
-      link: "/dashboard",
-      name: "dashboard",
+      link: '/dashboard',
+      name: 'dashboard',
       requiresRole: true, // Marca que requiere verificación de rol
     },
   ];
@@ -118,70 +118,70 @@ export const menuListItems = {
   items: [
     {
       key: 3,
-      text: "Presupuestos",
+      text: 'Presupuestos',
       icon: <MonetizationOnOutlinedIcon />,
-      link: "/presupuestos",
-      name: "presupuesto",
+      link: '/presupuestos',
+      name: 'presupuesto',
     },
     {
       key: 4,
-      text: "Balance",
+      text: 'Balance',
       icon: <AccountBalanceIcon />,
-      link: "/balance",
-      name: "balance",
+      link: '/balance',
+      name: 'balance',
       options: [
         {
           key: 0,
-          text: "Caja",
+          text: 'Caja',
           icon: <PointOfSaleIcon />,
-          link: "/caja",
-          name: "caja",
-          parent: "balance",
+          link: '/caja',
+          name: 'caja',
+          parent: 'balance',
         },
         {
           key: 0,
-          text: "Cuenta corriente",
+          text: 'Cuenta corriente',
           icon: <AccountBalanceIcon />,
-          link: "/balance",
-          name: "ctacte",
-          parent: "balance",
+          link: '/balance',
+          name: 'ctacte',
+          parent: 'balance',
         },
       ],
     },
     {
       key: 1,
-      text: "Clientes",
+      text: 'Clientes',
       icon: <GroupOutlinedIcon />,
-      link: "/clientes",
-      name: "cliente",
+      link: '/clientes',
+      name: 'cliente',
     },
     {
       key: 2,
-      text: "Productos",
+      text: 'Productos',
       icon: <Inventory2OutlinedIcon />,
-      link: "/productos",
-      name: "producto",
+      link: '/productos',
+      name: 'producto',
     },
     {
       key: 5,
-      text: "Distribucion",
+      text: 'Distribucion',
       icon: <LocalShippingIcon />,
-      link: "/distribucion",
-      name: "distribucion",
+      link: '/distribucion',
+      name: 'distribucion',
     },
     {
       key: 5,
-      text: "Proveedores",
+      text: 'Proveedores',
       icon: <StorefrontIcon />,
-      link: "/proveedores",
-      name: "proveedores",
+      link: '/proveedores',
+      name: 'proveedores',
     },
     {
       key: 0,
-      text: "Dashboard",
+      text: 'Dashboard',
       icon: <DashboardOutlinedIcon />,
-      link: "/dashboard",
-      name: "dashboard",
+      link: '/dashboard',
+      name: 'dashboard',
     },
   ],
 };
@@ -191,59 +191,59 @@ export const getMenuListItemsMobile = (userRole?: string) => {
   const allItems = [
     {
       key: 3,
-      text: "Presupuestos",
+      text: 'Presupuestos',
       icon: <MonetizationOnOutlinedIcon />,
-      link: "/presupuestos",
-      name: "presupuesto",
+      link: '/presupuestos',
+      name: 'presupuesto',
     },
     {
       key: 4,
-      text: "Cuentas Corrientes",
+      text: 'Cuentas Corrientes',
       icon: <AccountBalanceIcon />,
-      link: "/balance",
-      name: "balance",
+      link: '/balance',
+      name: 'balance',
     },
     {
       key: 10,
-      text: "Caja",
+      text: 'Caja',
       icon: <PointOfSaleIcon />,
-      link: "/caja",
-      name: "caja",
+      link: '/caja',
+      name: 'caja',
     },
     {
       key: 1,
-      text: "Clientes",
+      text: 'Clientes',
       icon: <GroupOutlinedIcon />,
-      link: "/clientes",
-      name: "cliente",
+      link: '/clientes',
+      name: 'cliente',
     },
     {
       key: 2,
-      text: "Productos",
+      text: 'Productos',
       icon: <Inventory2OutlinedIcon />,
-      link: "/productos",
-      name: "producto",
+      link: '/productos',
+      name: 'producto',
     },
     {
       key: 5,
-      text: "Distribucion",
+      text: 'Distribucion',
       icon: <LocalShippingIcon />,
-      link: "/distribucion",
-      name: "distribucion",
+      link: '/distribucion',
+      name: 'distribucion',
     },
     {
       key: 5,
-      text: "Proveedores",
+      text: 'Proveedores',
       icon: <StorefrontIcon />,
-      link: "/proveedores",
-      name: "proveedores",
+      link: '/proveedores',
+      name: 'proveedores',
     },
     {
       key: 0,
-      text: "Dashboard",
+      text: 'Dashboard',
       icon: <DashboardOutlinedIcon />,
-      link: "/dashboard",
-      name: "dashboard",
+      link: '/dashboard',
+      name: 'dashboard',
       requiresRole: true, // Marca que requiere verificación de rol
     },
   ];
@@ -273,59 +273,59 @@ export const menuListItemsMobile = {
   items: [
     {
       key: 3,
-      text: "Presupuestos",
+      text: 'Presupuestos',
       icon: <MonetizationOnOutlinedIcon />,
-      link: "/presupuestos",
-      name: "presupuesto",
+      link: '/presupuestos',
+      name: 'presupuesto',
     },
     {
       key: 4,
-      text: "Cuentas Corrientes",
+      text: 'Cuentas Corrientes',
       icon: <AccountBalanceIcon />,
-      link: "/balance",
-      name: "balance",
+      link: '/balance',
+      name: 'balance',
     },
     {
       key: 10,
-      text: "Caja",
+      text: 'Caja',
       icon: <PointOfSaleIcon />,
-      link: "/caja",
-      name: "caja",
+      link: '/caja',
+      name: 'caja',
     },
     {
       key: 1,
-      text: "Clientes",
+      text: 'Clientes',
       icon: <GroupOutlinedIcon />,
-      link: "/clientes",
-      name: "cliente",
+      link: '/clientes',
+      name: 'cliente',
     },
     {
       key: 2,
-      text: "Productos",
+      text: 'Productos',
       icon: <Inventory2OutlinedIcon />,
-      link: "/productos",
-      name: "producto",
+      link: '/productos',
+      name: 'producto',
     },
     {
       key: 5,
-      text: "Distribucion",
+      text: 'Distribucion',
       icon: <LocalShippingIcon />,
-      link: "/distribucion",
-      name: "distribucion",
+      link: '/distribucion',
+      name: 'distribucion',
     },
     {
       key: 5,
-      text: "Proveedores",
+      text: 'Proveedores',
       icon: <StorefrontIcon />,
-      link: "/proveedores",
-      name: "proveedores",
+      link: '/proveedores',
+      name: 'proveedores',
     },
     {
       key: 0,
-      text: "Dashboard",
+      text: 'Dashboard',
       icon: <DashboardOutlinedIcon />,
-      link: "/dashboard",
-      name: "dashboard",
+      link: '/dashboard',
+      name: 'dashboard',
     },
   ],
 };
