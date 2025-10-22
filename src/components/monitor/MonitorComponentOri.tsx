@@ -65,7 +65,7 @@ const MonitorComponentOri: React.FunctionComponent<MonitorComponentOriProps> = (
 
   //
 
-  const minutesData = () => {
+  const minutesData = () => { 
     const res: Array<string> = [];
     let i = 1;
 

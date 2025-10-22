@@ -1,13 +1,17 @@
-import React, { ReactNode } from "react";
-import { Navigate } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
-import { Box, CircularProgress } from "@mui/material";
+import React, { ReactNode } from 'react';
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
+import { Box, CircularProgress } from '@mui/material';
 
 interface ProtectedRouteProps {
   children: ReactNode;
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
+  // TEMPORAL: Validación de autenticación deshabilitada
+  // Descomentar las líneas siguientes para volver a habilitar la validación
+
+  /* 
   const { isAuthenticated, isLoading } = useAuth();
 
   // Show loading while checking authentication
@@ -31,6 +35,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   if (!isAuthenticated && !hasStoredAuth) {
     return <Navigate to="/login" replace />;
   }
+  */
 
   return <>{children}</>;
 };

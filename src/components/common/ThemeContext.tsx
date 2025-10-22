@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
-import { ThemeProvider, createTheme, Theme } from "@mui/material/styles";
+import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { ThemeProvider, createTheme, Theme } from '@mui/material/styles';
 
 interface ThemeContextType {
   toggleTheme: () => void;
@@ -10,24 +10,24 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 const lightTheme = createTheme({
   palette: {
-    mode: "light",
+    mode: 'light',
   },
 });
 
 const darkTheme = createTheme({
   palette: {
-    mode: "dark",
+    mode: 'dark',
   },
 });
 
 export const ThemeProviderWrapper: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
-  const [theme, setTheme] = useState<Theme>(lightTheme);
+  const [theme, setTheme] = useState<Theme>(darkTheme);
 
   const toggleTheme = () => {
     setTheme((prevTheme) =>
-      prevTheme.palette.mode === "light" ? darkTheme : lightTheme
+      prevTheme.palette.mode === 'light' ? darkTheme : lightTheme,
     );
   };
 
@@ -42,7 +42,7 @@ export const useThemeContext = () => {
   const context = useContext(ThemeContext);
   if (!context) {
     throw new Error(
-      "useThemeContext must be used within a ThemeProviderWrapper"
+      'useThemeContext must be used within a ThemeProviderWrapper',
     );
   }
   return context;

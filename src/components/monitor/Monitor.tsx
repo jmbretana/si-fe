@@ -1,15 +1,11 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
 import { useState, useEffect } from 'react';
-
 import { controlDataOri, controlDataFc, controlDataSp } from '@interfaces';
-
 import { updateOri } from '@hooks/HookUpdateOri';
 import { HookUpdateSp } from '@hooks/HookUpdateSp';
 import { HookUpdateFc } from '@hooks/HookUpdateFc';
 
 import Box from '@mui/system/Box';
-
 import moment from 'moment';
 
 //import ControlBar from "../control/UI/ControlBar";
@@ -159,20 +155,20 @@ const Monitor = () => {
   );
 
   const heartView = (
-    <div>
+    <Box>
       <MonitorHeart dataLoad={dataLoadFc!} hourMinutes={hourMinutes!} />
-    </div>
+    </Box>
   );
 
   return (
-    <div className="pt-5">
+    <Box>
       {showLoading && loadingView}
 
       {!showLoading && (
-        <div>
+        <Box>
           <Box
             sx={{
-              background: "url('../masimo3.png') no-repeat",
+              background: "url('/masimo3.png') no-repeat",
               paddingTop: '120px',
               paddingLeft: '460px',
               paddingRight: '20px',
@@ -191,9 +187,9 @@ const Monitor = () => {
               {fcView}
             </Box>
           </Box>
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 };
 
