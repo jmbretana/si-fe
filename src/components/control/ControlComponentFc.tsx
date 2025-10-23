@@ -25,8 +25,8 @@ const ControlComponentFc: React.FunctionComponent = () => {
     updateDataFc } = HookUpdateFc();
 
   useEffect(() => {
-    if (dataFc.length === 0) getDataFc();
-    if (dataLastFc.length === 0) getLastFc();
+    if (!dataFc) getDataFc();
+    if (!dataLastFc) getLastFc();
   }, []);
 
   useEffect(() => {
@@ -37,10 +37,9 @@ const ControlComponentFc: React.FunctionComponent = () => {
   }, [loadingResetFc]);
 
   useEffect(() => {
-    if (dataFc.length > 0) {
-      setOldValue(dataFc[0].fc);
-
-      setNewValue(dataFc[0].fc);
+    if (dataFc) {
+      setOldValue(dataFc.fc);
+      setNewValue(dataFc.fc);
       changeSecondsHandler(dataFc[0].fcSeconds);
     }
   }, [dataFc]);

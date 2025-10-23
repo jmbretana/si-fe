@@ -5,7 +5,7 @@ import { spService } from '@services/sp.service';
 import { controlDataSp, SpHistoryData, errorData } from '@interfaces';
 
 export const HookUpdateSp = () => {
-  const [dataSp, setDataSp] = useState<Array<controlDataSp>>([]);
+  const [dataSp, setDataSp] = useState<controlDataSp | null>(null);
   const [dataLastSp, setDataLastSp] = useState<Array<controlDataSp>>([]);
 
   const [savingSp, setSavingSp] = useState<boolean>(false);
@@ -17,16 +17,8 @@ export const HookUpdateSp = () => {
   const getDataSp = async () => {
     try {
       setLoadingDataSp(true);
-      const data: controlDataSp = await spService.getData();
-      setDataSp([
-        {
-          id: data.id,
-          sp: data.sp,
-          spSeconds: data.spSeconds,
-          spMinutes: data.spMinutes,
-          saturacion: data.saturacion,
-        },
-      ]);
+      const response: any = await spService.getData();
+      setDataSp(response.data.data);
     } catch (error: any) {
       console.log(error);
       setErrorSp(error.response?.data?.error?.message || error.message);

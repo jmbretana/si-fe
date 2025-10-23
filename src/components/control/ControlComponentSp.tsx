@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
-import React from "react";
+import { useEffect, useState } from 'react';
+import React from 'react';
 import { controlDataSp } from '../../interfaces';
-import { HookUpdateSp } from "../../hooks/HookUpdateSp";
-import ControlComponent from "./ControlComponent";
+import { HookUpdateSp } from '../../hooks/HookUpdateSp';
+import ControlComponent from './ControlComponent';
 interface SpProps {
-  disabled?: boolean,
+  disabled?: boolean;
   //
-  onDisableOri: (disable: boolean) => void,
+  onDisableOri: (disable: boolean) => void;
 }
 
 const ControlComponentSp: React.FunctionComponent<SpProps> = (props) => {
@@ -17,7 +17,6 @@ const ControlComponentSp: React.FunctionComponent<SpProps> = (props) => {
   const [newValue, setNewValue] = useState<number>(0);
   const [oldValue, setOldValue] = useState<number>(0);
 
-
   const {
     dataSp,
     getDataSp,
@@ -26,10 +25,11 @@ const ControlComponentSp: React.FunctionComponent<SpProps> = (props) => {
     addDataSp,
     loadingResetSp,
     savingSp,
-    updateDataSp } = HookUpdateSp();
+    updateDataSp,
+  } = HookUpdateSp();
 
   useEffect(() => {
-    if (dataSp.length === 0) getDataSp();
+    if (!dataSp) getDataSp();
     if (dataLastSp.length === 0) getLastSp();
   }, []);
 
@@ -41,13 +41,14 @@ const ControlComponentSp: React.FunctionComponent<SpProps> = (props) => {
   }, [loadingResetSp]);
 
   useEffect(() => {
-    if (dataSp.length > 0) {
-      setOldValue(dataSp[0].sp);
+    console.log('dataSp changed', dataSp);
+    if (dataSp) {
+      setOldValue(dataSp.sp);
 
-      setNewValue(dataSp[0].sp);
-      changeSecondsHandler(dataSp[0].spSeconds);
+      setNewValue(dataSp.sp);
+      changeSecondsHandler(dataSp.spSeconds);
 
-      if (dataSp[0].sp < 100) props.onDisableOri(true);
+      if (dataSp.sp < 100) props.onDisableOri(true);
     }
   }, [dataSp]);
 
@@ -64,8 +65,7 @@ const ControlComponentSp: React.FunctionComponent<SpProps> = (props) => {
   }, [savingSp]);
 
   useEffect(() => {
-    (oldValue === newValue) ?
-      setDisabled(true) : setDisabled(false)
+    oldValue === newValue ? setDisabled(true) : setDisabled(false);
   }, [oldValue, newValue]);
 
   //
@@ -74,10 +74,10 @@ const ControlComponentSp: React.FunctionComponent<SpProps> = (props) => {
     if (newControl) {
       if (newSeconds === 1) {
         addDataSp({
-          "id": "sp",
+          id: 'sp',
           sp: newControl.sp,
           spSeconds: 1,
-        })
+        });
       }
 
       setNewCounter(newControl.sp);
@@ -86,15 +86,16 @@ const ControlComponentSp: React.FunctionComponent<SpProps> = (props) => {
       setOldValue(newControl.sp);
       setNewValue(newControl.sp);
 
-      (newControl.sp < 100) ? props.onDisableOri(true) : props.onDisableOri(false);
+      newControl.sp < 100
+        ? props.onDisableOri(true)
+        : props.onDisableOri(false);
     }
   };
 
   const changeCounterHandler = (spCounter: number) => {
     if (newControl && newSeconds > 1) {
-
       addDataSp({
-        "id": "sp",
+        id: 'sp',
         sp: spCounter,
         spSeconds: 1,
       });
@@ -116,11 +117,15 @@ const ControlComponentSp: React.FunctionComponent<SpProps> = (props) => {
   return (
     <>
       <ControlComponent
-        title={<>Sp0<sub>2</sub></>}
+        title={
+          <>
+            Sp0<sub>2</sub>
+          </>
+        }
         disabledButton={disabledButton}
         min={1}
         max={100}
-        subTittle={"%"}
+        subTittle={'%'}
         oldValue={oldValue}
         newValue={newValue}
         newCounter={newCounter}

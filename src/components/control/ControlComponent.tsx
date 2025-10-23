@@ -15,7 +15,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import { Box, Grid } from '@mui/material';
 interface ControlComponentProps {
-  title: string | JSX.Element;
+  title: string | React.ReactNode;
   min: number;
   max: number;
   disabled?: boolean;
@@ -30,20 +30,10 @@ interface ControlComponentProps {
 
   //
   onSaveHandler: () => void;
-  onChangeCounter: (number) => void;
-  onChangeValue: (number) => void;
-  onChangeSeconds: (number) => void;
+  onChangeCounter: (number: number) => void;
+  onChangeValue: (number: number) => void;
+  onChangeSeconds: (number: number) => void;
 }
-
-/*
-  container: {
-    padding: "12px",
-  },
-
-  containerDisabled: {
-    background: "#333",
-  },
-*/
 
 const ControlComponent: React.FunctionComponent<ControlComponentProps> = (
   props,

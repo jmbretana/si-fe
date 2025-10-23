@@ -19,14 +19,8 @@ export const HookUpdateFc = () => {
   const getDataFc = async () => {
     try {
       setLoadingDataFc(true);
-      const data = await fcService.getData();
-      setDataFc([
-        {
-          id: data.id,
-          fc: data.fc,
-          fcSeconds: data.fcSeconds,
-        },
-      ]);
+      const response: any = await fcService.getData();
+      setDataFc(response.data.data);
     } catch (error: any) {
       console.log(error);
       setErrorFc(error.response?.data?.error?.message || error.message);
