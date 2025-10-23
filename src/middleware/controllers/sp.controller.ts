@@ -1,16 +1,5 @@
 import { BaseController } from './base.controller';
-import { controlDataSp, SpHistoryData } from '@interfaces';
-
-interface SpHistoryItem extends SpData {
-  id: string;
-  timestamp: string;
-}
-
-interface SpUpdateRequest {
-  saturacion: number;
-  segundos: number;
-  minutos: number;
-}
+import { controlDataSp, SpHistoryData, SpUpdateInput } from '@interfaces';
 
 /**
  * SP (Saturación de Oxígeno) Controller
@@ -24,29 +13,29 @@ class SpControllerClass extends BaseController {
   /**
    * Get current SP data
    */
-  async getData(): Promise<SpData> {
-    return this.get<SpData>();
+  async getData(): Promise<controlDataSp> {
+    return this.get<controlDataSp>();
   }
 
   /**
    * Update SP data
    */
-  async update(data: SpUpdateRequest): Promise<SpData> {
-    return this.put<SpData, SpUpdateRequest>('', data);
+  async update(data: SpUpdateInput): Promise<controlDataSp> {
+    return this.put<controlDataSp, SpUpdateInput>('', data);
   }
 
   /**
    * Save SP data to history
    */
-  async save(data: SpUpdateRequest): Promise<SpHistoryItem> {
-    return this.post<SpHistoryItem, SpUpdateRequest>('/save', data);
+  async save(data: SpUpdateInput): Promise<SpHistoryData> {
+    return this.post<SpHistoryData, SpUpdateInput>('/save', data);
   }
 
   /**
    * Get last SP history record
    */
-  async getLast(): Promise<SpHistoryItem[]> {
-    return this.get<SpHistoryItem[]>('/last');
+  async getLast(): Promise<SpHistoryData[]> {
+    return this.get<SpHistoryData[]>('/last');
   }
 
   /**
@@ -59,8 +48,8 @@ class SpControllerClass extends BaseController {
   /**
    * Reset SP data
    */
-  async reset(): Promise<SpData> {
-    return this.delete<SpData>('/reset');
+  async reset(): Promise<controlDataSp> {
+    return this.delete<controlDataSp>('/reset');
   }
 }
 

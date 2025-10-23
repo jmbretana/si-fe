@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 import { spService } from '@services/sp.service';
-import { controlDataSp, SpHistoryData, errorData } from '../interfaces';
+import { controlDataSp, SpHistoryData, errorData } from '@interfaces';
 
 export const HookUpdateSp = () => {
   const [dataSp, setDataSp] = useState<Array<controlDataSp>>([]);
@@ -23,6 +23,8 @@ export const HookUpdateSp = () => {
           id: data.id,
           sp: data.sp,
           spSeconds: data.spSeconds,
+          spMinutes: data.spMinutes,
+          saturacion: data.saturacion,
         },
       ]);
     } catch (error: any) {
@@ -36,14 +38,22 @@ export const HookUpdateSp = () => {
   const getLastSp = async () => {
     try {
       setLoadingDataSp(true);
-      const data: SpHistoryData = await spService.getLast();
-      setDataLastSp([
-        {
-          id: data.id,
-          sp: data.sp,
-          spSeconds: data.spSeconds,
-        },
-      ]);
+      const data: SpHistoryData[] = await spService.getLast();
+      const last = data && data.length > 0 ? data[0] : null;
+
+      if (last) {
+        setDataLastSp([
+          {
+            id: last.id,
+            sp: last.sp,
+            spSeconds: last.spSeconds,
+            spMinutes: last.spMinutes,
+            saturacion: last.saturacion,
+          },
+        ]);
+      } else {
+        setDataLastSp([]);
+      }
     } catch (error: any) {
       console.log(error);
       setErrorSp(error.response?.data?.error?.message || error.message);
@@ -92,6 +102,8 @@ export const HookUpdateSp = () => {
       await spService.update({
         sp: control.sp,
         spSeconds: control.spSeconds,
+        spMinutes: control.spMinutes!,
+        saturacion: control.saturacion!,
       });
     } catch (error: any) {
       console.log(error);
@@ -106,6 +118,8 @@ export const HookUpdateSp = () => {
       await spService.save({
         sp: control.sp,
         spSeconds: control.spSeconds,
+        spMinutes: control.spMinutes!,
+        saturacion: control.saturacion!,
       });
     } catch (error: any) {
       console.log(error);

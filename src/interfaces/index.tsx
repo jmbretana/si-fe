@@ -17,14 +17,6 @@ export interface OriHistoryData {
   timestamp?: string;
 }
 
-export interface controlDataSp {
-  id: string;
-  sp: number;
-  spSeconds: number;
-  spMinutes: number;
-  saturacion: number;
-}
-
 // FC
 export interface controlDataFc {
   id: string;
@@ -48,13 +40,30 @@ export interface FCUpdateInput {
 }
 
 // SP
+
+export interface controlDataSp {
+  id?: string;
+  sp: number;
+  spSeconds: number;
+  spMinutes?: number;
+  saturacion?: number;
+}
 export interface SpHistoryData {
   id: string;
+  sp: number;
+  spSeconds: number;
+  spMinutes: number;
   saturacion: number;
-  segundos: number;
-  minutos: number;
   timestamp: string;
 }
+
+export interface SpUpdateInput {
+  sp: number;
+  saturacion: number;
+  spSeconds: number;
+  spMinutes: number;
+}
+
 // Ends SP
 
 //
