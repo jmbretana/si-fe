@@ -40,7 +40,7 @@ const ControlComponentFc: React.FunctionComponent = () => {
     if (dataFc) {
       setOldValue(dataFc.fc);
       setNewValue(dataFc.fc);
-      changeSecondsHandler(dataFc[0].fcSeconds);
+      changeSecondsHandler(dataFc.fcSeconds);
     }
   }, [dataFc]);
 

@@ -1,5 +1,5 @@
 import { BaseController } from './base.controller';
-import { controlDataFc, FCHistoryData, FCUpdateInput } from '@interfaces';
+import { controlDataFc, FCHistoryData } from '@interfaces';
 
 /**
  * FC (Frecuencia Cardíaca) Controller
@@ -20,15 +20,15 @@ class FcControllerClass extends BaseController {
   /**
    * Update FC data
    */
-  async update(data: FCUpdateInput): Promise<FcData> {
-    return this.put<FcData, FCUpdateInput>('', data);
+  async update(data: controlDataFc): Promise<controlDataFc> {
+    return this.put<controlDataFc, controlDataFc>('', data);
   }
 
   /**
    * Save FC data to history
    */
-  async save(data: FcUpdateRequest): Promise<FCHistoryData> {
-    return this.post<FCHistoryData, FcUpdateRequest>('/save', data);
+  async save(data: controlDataFc): Promise<FCHistoryData> {
+    return this.post<FCHistoryData, controlDataFc>('/save', data);
   }
 
   /**

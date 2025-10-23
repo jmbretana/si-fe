@@ -5,7 +5,7 @@ import { fcService } from '@services/fc.service';
 import { controlDataFc, FCHistoryData, errorData } from '@interfaces';
 
 export const HookUpdateFc = () => {
-  const [dataFc, setDataFc] = useState<Array<controlDataFc>>([]);
+  const [dataFc, setDataFc] = useState<controlDataFc>();
   const [dataLastFc, setDataLastFc] = useState<Array<controlDataFc>>([]);
 
   const [savingFc, setSavingFc] = useState<boolean>(false);
@@ -85,6 +85,7 @@ export const HookUpdateFc = () => {
     try {
       setSavingFc(true);
       await fcService.update({
+        id: control.id,
         fc: control.fc,
         fcSeconds: control.fcSeconds,
       });
@@ -99,6 +100,7 @@ export const HookUpdateFc = () => {
   const addDataFc = async (control: controlDataFc) => {
     try {
       await fcService.save({
+        id: control.id,
         fc: control.fc,
         fcSeconds: control.fcSeconds,
       });

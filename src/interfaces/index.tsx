@@ -35,8 +35,8 @@ export interface FCHistoryData {
 
 export interface FCUpdateInput {
   frecuencia: number;
-  segundos: number;
-  minutos: number;
+  fcSeconds: number;
+  fcMinutes: number;
 }
 
 // SP

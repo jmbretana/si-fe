@@ -6,11 +6,11 @@ export const fcService = {
     return await fcController.getData();
   },
 
-  async update(input: FCUpdateInput): Promise<controlDataFc> {
+  async update(input: controlDataFc): Promise<controlDataFc> {
     return await fcController.update(input);
   },
 
-  async save(input: FCUpdateInput): Promise<FCHistoryData> {
+  async save(input: controlDataFc): Promise<FCHistoryData> {
     return await fcController.save(input);
   },
 
