@@ -1,21 +1,5 @@
 import { BaseController } from './base.controller';
-
-interface FcData {
-  frecuencia: number;
-  segundos: number;
-  minutos: number;
-}
-
-interface FcHistoryItem extends FcData {
-  id: string;
-  timestamp: string;
-}
-
-interface FcUpdateRequest {
-  frecuencia: number;
-  segundos: number;
-  minutos: number;
-}
+import { controlDataFc, FCHistoryData, FCUpdateInput } from '@interfaces';
 
 /**
  * FC (Frecuencia Cardíaca) Controller
@@ -29,29 +13,29 @@ class FcControllerClass extends BaseController {
   /**
    * Get current FC data
    */
-  async getData(): Promise<FcData> {
-    return this.get<FcData>();
+  async getData(): Promise<controlDataFc> {
+    return this.get<controlDataFc>();
   }
 
   /**
    * Update FC data
    */
-  async update(data: FcUpdateRequest): Promise<FcData> {
-    return this.put<FcData, FcUpdateRequest>('', data);
+  async update(data: FCUpdateInput): Promise<FcData> {
+    return this.put<FcData, FCUpdateInput>('', data);
   }
 
   /**
    * Save FC data to history
    */
-  async save(data: FcUpdateRequest): Promise<FcHistoryItem> {
-    return this.post<FcHistoryItem, FcUpdateRequest>('/save', data);
+  async save(data: FcUpdateRequest): Promise<FCHistoryData> {
+    return this.post<FCHistoryData, FcUpdateRequest>('/save', data);
   }
 
   /**
    * Get last FC history record
    */
-  async getLast(): Promise<FcHistoryItem[]> {
-    return this.get<FcHistoryItem[]>('/last');
+  async getLast(): Promise<FCHistoryData[]> {
+    return this.get<FCHistoryData[]>('/last');
   }
 
   /**
@@ -64,8 +48,8 @@ class FcControllerClass extends BaseController {
   /**
    * Reset FC data
    */
-  async reset(): Promise<FcData> {
-    return this.delete<FcData>('/reset');
+  async reset(): Promise<controlDataFc> {
+    return this.delete<controlDataFc>('/reset');
   }
 }
 

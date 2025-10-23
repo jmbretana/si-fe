@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 import { fcService } from '@services/fc.service';
-import { controlDataFc, errorData } from '../interfaces';
+import { controlDataFc, FCHistoryData, errorData } from '@interfaces';
 
 export const HookUpdateFc = () => {
   const [dataFc, setDataFc] = useState<Array<controlDataFc>>([]);
@@ -38,12 +38,12 @@ export const HookUpdateFc = () => {
   const getLastFc = async () => {
     try {
       setLoadingLastFc(true);
-      const data = await fcService.getLast();
+      const data: FCHistoryData[] = await fcService.getLast();
       setDataLastFc([
         {
-          id: data.id,
-          fc: data.fc,
-          fcSeconds: data.fcSeconds,
+          id: data[0].id,
+          fc: data[0].fc,
+          fcSeconds: data[0].fcSeconds,
         },
       ]);
     } catch (error: any) {

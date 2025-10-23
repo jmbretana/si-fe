@@ -1,39 +1,20 @@
 import { fcController } from '@middleware/controllers';
-
-interface FcData {
-  frecuencia: number;
-  segundos: number;
-  minutos: number;
-}
-
-interface FcHistoryData {
-  id: string;
-  frecuencia: number;
-  segundos: number;
-  minutos: number;
-  timestamp: string;
-}
-
-interface FcUpdateInput {
-  frecuencia: number;
-  segundos: number;
-  minutos: number;
-}
+import { controlDataFc, FCHistoryData, FCUpdateInput } from '@interfaces';
 
 export const fcService = {
-  async getData(): Promise<FcData> {
+  async getData(): Promise<controlDataFc> {
     return await fcController.getData();
   },
 
-  async update(input: FcUpdateInput): Promise<FcData> {
+  async update(input: FCUpdateInput): Promise<controlDataFc> {
     return await fcController.update(input);
   },
 
-  async save(input: FcUpdateInput): Promise<FcHistoryData> {
+  async save(input: FCUpdateInput): Promise<FCHistoryData> {
     return await fcController.save(input);
   },
 
-  async getLast(): Promise<FcHistoryData[]> {
+  async getLast(): Promise<FCHistoryData[]> {
     return await fcController.getLast();
   },
 
@@ -41,7 +22,7 @@ export const fcService = {
     return await fcController.deleteHistory(id);
   },
 
-  async reset(): Promise<FcData> {
+  async reset(): Promise<controlDataFc> {
     return await fcController.reset();
   },
 };

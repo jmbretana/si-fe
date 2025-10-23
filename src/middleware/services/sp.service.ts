@@ -1,18 +1,5 @@
 import { spController } from '@middleware/controllers';
-
-interface SpData {
-  saturacion: number;
-  segundos: number;
-  minutos: number;
-}
-
-interface SpHistoryData {
-  id: string;
-  saturacion: number;
-  segundos: number;
-  minutos: number;
-  timestamp: string;
-}
+import { controlDataSp, SpHistoryData } from '@interfaces';
 
 interface SpUpdateInput {
   saturacion: number;
@@ -21,11 +8,11 @@ interface SpUpdateInput {
 }
 
 export const spService = {
-  async getData(): Promise<SpData> {
+  async getData(): Promise<controlDataSp> {
     return await spController.getData();
   },
 
-  async update(input: SpUpdateInput): Promise<SpData> {
+  async update(input: SpUpdateInput): Promise<controlDataSp> {
     return await spController.update(input);
   },
 

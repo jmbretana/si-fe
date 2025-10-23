@@ -1,10 +1,5 @@
 import { BaseController } from './base.controller';
-
-interface SpData {
-  saturacion: number;
-  segundos: number;
-  minutos: number;
-}
+import { controlDataSp, SpHistoryData } from '@interfaces';
 
 interface SpHistoryItem extends SpData {
   id: string;

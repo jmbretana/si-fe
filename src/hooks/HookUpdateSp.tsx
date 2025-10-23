@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 import { spService } from '@services/sp.service';
-import { controlDataSp, errorData } from '../interfaces';
+import { controlDataSp, SpHistoryData, errorData } from '../interfaces';
 
 export const HookUpdateSp = () => {
   const [dataSp, setDataSp] = useState<Array<controlDataSp>>([]);
@@ -17,7 +17,7 @@ export const HookUpdateSp = () => {
   const getDataSp = async () => {
     try {
       setLoadingDataSp(true);
-      const data = await spService.getData();
+      const data: controlDataSp = await spService.getData();
       setDataSp([
         {
           id: data.id,
@@ -36,7 +36,7 @@ export const HookUpdateSp = () => {
   const getLastSp = async () => {
     try {
       setLoadingDataSp(true);
-      const data = await spService.getLast();
+      const data: SpHistoryData = await spService.getLast();
       setDataLastSp([
         {
           id: data.id,
