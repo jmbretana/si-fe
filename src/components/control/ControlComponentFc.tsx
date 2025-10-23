@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import React from "react";
+import { useEffect, useState } from 'react';
+import React from 'react';
 import { controlDataFc } from '../../interfaces';
-import { HookUpdateFc } from "../../hooks/HookUpdateFc";
-import ControlComponent from "./ControlComponent";
+import { HookUpdateFc } from '../../hooks/HookUpdateFc';
+import ControlComponent from './ControlComponent';
 
 const ControlComponentFc: React.FunctionComponent = () => {
   const [disabledButton, setDisabledButton] = useState<boolean>(true);
@@ -22,7 +22,8 @@ const ControlComponentFc: React.FunctionComponent = () => {
     addDataFc,
     loadingResetFc,
     savingFc,
-    updateDataFc } = HookUpdateFc();
+    updateDataFc,
+  } = HookUpdateFc();
 
   useEffect(() => {
     if (!dataFc) getDataFc();
@@ -57,8 +58,7 @@ const ControlComponentFc: React.FunctionComponent = () => {
   }, [savingFc]);
 
   useEffect(() => {
-    (oldValue === newValue) ?
-      setDisabledButton(true) : setDisabledButton(false)
+    oldValue === newValue ? setDisabledButton(true) : setDisabledButton(false);
   }, [oldValue, newValue]);
 
   //
@@ -67,10 +67,10 @@ const ControlComponentFc: React.FunctionComponent = () => {
     if (newControl) {
       if (newSeconds === 1) {
         addDataFc({
-          id: "fc",
+          id: 'fc',
           fc: newControl.fc,
           fcSeconds: 1,
-        })
+        });
       }
       setNewCounter(newControl.fc);
       updateDataFc(newControl);
@@ -83,7 +83,7 @@ const ControlComponentFc: React.FunctionComponent = () => {
   const changeCounterHandler = (fcCounter: number) => {
     if (newControl && newSeconds > 1) {
       addDataFc({
-        id: "fc",
+        id: 'fc',
         fc: fcCounter,
         fcSeconds: 1,
       });
@@ -103,25 +103,23 @@ const ControlComponentFc: React.FunctionComponent = () => {
   ///
 
   return (
-    <>
-      <ControlComponent
-        title={<>Fc</>}
-        disabledButton={disabledButton}
-        min={1}
-        max={300}
-        subTittle={"lpm"}
-        oldValue={oldValue}
-        newValue={newValue}
-        newCounter={newCounter}
-        newSeconds={newSeconds}
-        type={"other"}
-        //
-        onSaveHandler={saveHandler}
-        onChangeValue={changeValueHandler}
-        onChangeCounter={changeCounterHandler}
-        onChangeSeconds={changeSecondsHandler}
-      />
-    </>
+    <ControlComponent
+      title={<>Fc</>}
+      disabledButton={disabledButton}
+      min={1}
+      max={300}
+      subTittle={'lpm'}
+      oldValue={oldValue}
+      newValue={newValue}
+      newCounter={newCounter}
+      newSeconds={newSeconds}
+      type={'other'}
+      //
+      onSaveHandler={saveHandler}
+      onChangeValue={changeValueHandler}
+      onChangeCounter={changeCounterHandler}
+      onChangeSeconds={changeSecondsHandler}
+    />
   );
 };
 

@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import React from "react";
-import { controlDataOri } from "../../interfaces";
+import { useEffect, useState } from 'react';
+import React from 'react';
+import { controlDataOri } from '../../interfaces';
 
-import { updateOri } from "../../hooks/HookUpdateOri";
-import ControlComponent from "./ControlComponent";
-import Box from "@mui/system/Box";
+import { updateOri } from '../../hooks/HookUpdateOri';
+import ControlComponent from './ControlComponent';
+import Box from '@mui/system/Box';
 
 interface OriProps {
   disabled: boolean;
@@ -62,7 +62,7 @@ const ControlComponentOri: React.FunctionComponent<OriProps> = (props) => {
     if (newControl) {
       if (newSeconds === 1)
         addDataOri({
-          id: "ori",
+          id: 'ori',
           ori: newControl.ori,
           oriSeconds: 1,
         });
@@ -78,7 +78,7 @@ const ControlComponentOri: React.FunctionComponent<OriProps> = (props) => {
   const changeCounterHandler = (oriCounter: number) => {
     if (newControl && newSeconds > 1) {
       addDataOri({
-        id: "ori",
+        id: 'ori',
         ori: oriCounter,
         oriSeconds: 1,
       });
@@ -98,25 +98,23 @@ const ControlComponentOri: React.FunctionComponent<OriProps> = (props) => {
   ///
 
   return (
-    <Box padding={"12px"}>
-      <ControlComponent
-        title={<>Ori</>}
-        disabledButton={disabledButton}
-        min={0}
-        max={10}
-        subTittle={""}
-        oldValue={oldValue}
-        newValue={newValue}
-        newCounter={newCounter}
-        newSeconds={newSeconds}
-        type={"ori"}
-        //
-        onSaveHandler={saveHandler}
-        onChangeValue={changeValueHandler}
-        onChangeCounter={changeCounterHandler}
-        onChangeSeconds={changeSecondsHandler}
-      />
-    </Box>
+    <ControlComponent
+      title={<>Ori</>}
+      disabledButton={disabledButton}
+      min={0}
+      max={10}
+      subTittle={''}
+      oldValue={oldValue}
+      newValue={newValue}
+      newCounter={newCounter}
+      newSeconds={newSeconds}
+      type={'ori'}
+      //
+      onSaveHandler={saveHandler}
+      onChangeValue={changeValueHandler}
+      onChangeCounter={changeCounterHandler}
+      onChangeSeconds={changeSecondsHandler}
+    />
   );
 };
 

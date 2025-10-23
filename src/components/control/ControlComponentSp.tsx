@@ -115,29 +115,27 @@ const ControlComponentSp: React.FunctionComponent<SpProps> = (props) => {
   ///
 
   return (
-    <>
-      <ControlComponent
-        title={
-          <>
-            Sp0<sub>2</sub>
-          </>
-        }
-        disabledButton={disabledButton}
-        min={1}
-        max={100}
-        subTittle={'%'}
-        oldValue={oldValue}
-        newValue={newValue}
-        newCounter={newCounter}
-        newSeconds={newSeconds}
-        type="other"
-        //
-        onSaveHandler={saveHandler}
-        onChangeValue={changeValueHandler}
-        onChangeCounter={changeCounterHandler}
-        onChangeSeconds={changeSecondsHandler}
-      />
-    </>
+    <ControlComponent
+      title={
+        <>
+          Sp0<sub>2</sub>
+        </>
+      }
+      disabledButton={disabledButton}
+      min={1}
+      max={100}
+      subTittle={'%'}
+      oldValue={oldValue}
+      newValue={newValue}
+      newCounter={newCounter}
+      newSeconds={newSeconds}
+      type="other"
+      //
+      onSaveHandler={saveHandler}
+      onChangeValue={changeValueHandler}
+      onChangeCounter={changeCounterHandler}
+      onChangeSeconds={changeSecondsHandler}
+    />
   );
 };
 

@@ -18,7 +18,7 @@ export const HookUpdateSp = () => {
     try {
       setLoadingDataSp(true);
       const response: any = await spService.getData();
-      setDataSp(response.data.data);
+      setDataSp(response.data);
     } catch (error: any) {
       console.log(error);
       setErrorSp(error.response?.data?.error?.message || error.message);
@@ -49,18 +49,6 @@ export const HookUpdateSp = () => {
     } catch (error: any) {
       console.log(error);
       setErrorSp(error.response?.data?.error?.message || error.message);
-    } finally {
-      setLoadingDataSp(false);
-    }
-  };
-
-  const deleteDataSp = async (id: string) => {
-    try {
-      setLoadingDataSp(true);
-      await spService.deleteHistory(id);
-    } catch (error: any) {
-      console.log(error);
-      setErrorSp(error.response?.data?.error?.code || error.message);
     } finally {
       setLoadingDataSp(false);
     }

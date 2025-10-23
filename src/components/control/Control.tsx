@@ -96,7 +96,6 @@ const Control = () => {
         marginBottom: '10px',
       }}
     >
-      {' '}
       <ControlComponentFc />
     </Box>
   );
@@ -106,7 +105,7 @@ const Control = () => {
       {showLoading && loadingView}
 
       {!showLoading && (
-        <Box className="container">
+        <Box>
           <Box
             sx={{
               paddingBottom: '10px',
@@ -114,17 +113,15 @@ const Control = () => {
               justifyContent: 'end',
             }}
           >
-            {
-              <ButtonUI
-                title={'Reset'}
-                saving={false}
-                color={'error'}
-                variant={'outlined'}
-                startIcon={<RestartAlt />}
-                //
-                onClick={iniciarHandler}
-              />
-            }
+            <ButtonUI
+              title={'Reset'}
+              saving={false}
+              color={'error'}
+              variant={'outlined'}
+              startIcon={<RestartAlt />}
+              //
+              onClick={iniciarHandler}
+            />
           </Box>
 
           {oriView}
