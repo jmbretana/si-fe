@@ -1,39 +1,20 @@
 import { oriController } from '@middleware/controllers';
-
-interface OriData {
-  indice: number;
-  segundos: number;
-  minutos: number;
-}
-
-interface OriHistoryData {
-  id: string;
-  indice: number;
-  segundos: number;
-  minutos: number;
-  timestamp: string;
-}
-
-interface OriUpdateInput {
-  indice: number;
-  segundos: number;
-  minutos: number;
-}
+import { controlDataOri, OriHistoryData } from '@interfaces';
 
 export const oriService = {
-  async getData(): Promise<OriData> {
+  async getData(): Promise<controlDataOri> {
     return await oriController.getData();
   },
 
-  async update(input: OriUpdateInput): Promise<OriData> {
+  async update(input: controlDataOri): Promise<controlDataOri> {
     return await oriController.update(input);
   },
 
-  async save(input: OriUpdateInput): Promise<OriHistoryData> {
+  async save(input: controlDataOri): Promise<OriHistoryData> {
     return await oriController.save(input);
   },
 
-  async getLast(): Promise<OriHistoryData[]> {
+  async getLast(): Promise<OriHistoryData> {
     return await oriController.getLast();
   },
 
@@ -41,7 +22,7 @@ export const oriService = {
     return await oriController.deleteHistory(id);
   },
 
-  async reset(): Promise<OriData> {
+  async reset(): Promise<controlDataOri> {
     return await oriController.reset();
   },
 };

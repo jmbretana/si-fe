@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 import { oriService } from '@services/ori.service';
-import { controlDataOri, errorData } from '../interfaces';
+import { controlDataOri, OriHistoryData, errorData } from '@interfaces';
 
 export const updateOri = () => {
   const [dataOri, setDataOri] = useState<Array<controlDataOri>>([]);
@@ -19,7 +19,7 @@ export const updateOri = () => {
   const getDataOri = async () => {
     try {
       setLoadingDataOri(true);
-      const data = await oriService.getData();
+      const data: controlDataOri = await oriService.getData();
       setDataOri([
         {
           id: data.id,
@@ -38,12 +38,12 @@ export const updateOri = () => {
   const getLastOri = async () => {
     try {
       setLoadingDataOri(true);
-      const data = await oriService.getLast();
+      const data: OriHistoryData = await oriService.getLast();
       setDataLastOri([
         {
           id: data.id,
-          ori: data.ori,
-          oriSeconds: data.oriSeconds,
+          ori: data.indice || 0,
+          oriSeconds: data.oriSeconds || 0,
         },
       ]);
     } catch (error: any) {
@@ -91,6 +91,7 @@ export const updateOri = () => {
     try {
       setSavingOri(true);
       await oriService.update({
+        id: control.id,
         ori: control.ori,
         oriSeconds: control.oriSeconds,
       });
@@ -107,6 +108,7 @@ export const updateOri = () => {
 
     try {
       await oriService.save({
+        id: control.id,
         ori: control.ori,
         oriSeconds: control.oriSeconds,
       });

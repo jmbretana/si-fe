@@ -1,12 +1,7 @@
 import { BaseController } from './base.controller';
+import { controlDataOri, OriHistoryData } from '@interfaces';
 
-interface OriData {
-  indice: number;
-  segundos: number;
-  minutos: number;
-}
-
-interface OriHistoryItem extends OriData {
+interface OriHistoryItem extends controlDataOri {
   id: string;
   timestamp: string;
 }
@@ -29,29 +24,29 @@ class OriControllerClass extends BaseController {
   /**
    * Get current ORI data
    */
-  async getData(): Promise<OriData> {
-    return this.get<OriData>();
+  async getData(): Promise<controlDataOri> {
+    return this.get<controlDataOri>();
   }
 
   /**
    * Update ORI data
    */
-  async update(data: OriUpdateRequest): Promise<OriData> {
-    return this.put<OriData, OriUpdateRequest>('', data);
+  async update(data: controlDataOri): Promise<controlDataOri> {
+    return this.put<controlDataOri, controlDataOri>('', data);
   }
 
   /**
    * Save ORI data to history
    */
-  async save(data: OriUpdateRequest): Promise<OriHistoryItem> {
-    return this.post<OriHistoryItem, OriUpdateRequest>('/save', data);
+  async save(data: controlDataOri): Promise<OriHistoryItem> {
+    return this.post<OriHistoryItem, controlDataOri>('/save', data);
   }
 
   /**
    * Get last ORI history record
    */
-  async getLast(): Promise<OriHistoryItem[]> {
-    return this.get<OriHistoryItem[]>('/last');
+  async getLast(): Promise<OriHistoryData> {
+    return this.get<OriHistoryData>('/last');
   }
 
   /**
@@ -64,8 +59,8 @@ class OriControllerClass extends BaseController {
   /**
    * Reset ORI data
    */
-  async reset(): Promise<OriData> {
-    return this.delete<OriData>('/reset');
+  async reset(): Promise<controlDataOri> {
+    return this.delete<controlDataOri>('/reset');
   }
 }
 
