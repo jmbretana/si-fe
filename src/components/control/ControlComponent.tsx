@@ -13,7 +13,7 @@ import { transformToDecimal } from '../../utils/utils';
 import Save from '@mui/icons-material/Save';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import { Box } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 interface ControlComponentProps {
   title: string | JSX.Element;
   min: number;

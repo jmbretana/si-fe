@@ -3,6 +3,7 @@ import { FaArrowCircleDown, FaArrowCircleUp } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import { clsx } from 'clsx';
 import { transformToDecimal, invertDecimal } from '@utils/utils';
+import { Box } from '@mui/material';
 
 interface InputUpDownComponentProps {
   value: number;
@@ -12,7 +13,7 @@ interface InputUpDownComponentProps {
   ori?: boolean;
   //
 
-  changeValue: (number) => void;
+  changeValue: (number: number) => void;
 }
 
 const InputUpDownComponent: React.FunctionComponent<
@@ -56,17 +57,18 @@ const InputUpDownComponent: React.FunctionComponent<
     }
   };
 
-  const editValue = (v) => {
+  const editValue = (v: string) => {
     let value: number;
 
     if (v !== '') {
       if (props.ori) {
-        value = Number(transformToDecimal(v));
+        value = Number(transformToDecimal(Number(v)));
       } else {
-        value = v ? v.toString() : '';
+        value = v ? Number(v) : 0;
       }
     } else value = 0;
 
+    value = Number(value);
     if (value > props.max) value = props.max;
     if (value < props.min) value = props.min;
 
@@ -75,7 +77,7 @@ const InputUpDownComponent: React.FunctionComponent<
   };
 
   return (
-    <div className="input-group">
+    <Box className="input-group">
       <input
         type="text"
         className="form-control"
@@ -106,7 +108,7 @@ const InputUpDownComponent: React.FunctionComponent<
       >
         <FaArrowCircleUp />
       </button>
-    </div>
+    </Box>
   );
 };
 

@@ -32,9 +32,7 @@ const Monitor = () => {
   const [showLoading, setShowLoading] = useState<boolean>(true);
 
   const { dataLastOri, getLastOri, loadingDataOri } = updateOri();
-
   const { dataLastSp, getLastSp, loadingDataSp } = HookUpdateSp();
-
   const { dataLastFc, getLastFc, loadingDataFc } = HookUpdateFc();
 
   //
@@ -79,13 +77,13 @@ const Monitor = () => {
   ///
 
   const loadingView = (
-    <div className="container border-white d-flex justify-content-center div-loading">
+    <Box className="container border-white d-flex justify-content-center div-loading">
       <span
         className="spinner-border spinner-border-sm loading-data"
         role="status"
         aria-hidden="true"
       ></span>
-    </div>
+    </Box>
   );
 
   const oriView = (
@@ -180,7 +178,7 @@ const Monitor = () => {
                 paddingBottom: '100px',
               }}
             >
-              <div>{dataLoadFc && heartView}</div>
+              <Box>{dataLoadFc && heartView}</Box>
 
               {oriView}
               {spView}

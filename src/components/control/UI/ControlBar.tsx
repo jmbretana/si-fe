@@ -7,7 +7,7 @@ import { Box } from '@mui/material';
 interface ControlBarProps {
   beep: boolean;
   //
-  onChangeBeep: (beep) => void;
+  onChangeBeep: (beep: boolean) => void;
 }
 
 const ControlBar: React.FunctionComponent<ControlBarProps> = (props) => {
