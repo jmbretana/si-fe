@@ -72,7 +72,7 @@ function HeaderComponent() {
               pb: '2px',
             }}
           >
-            new terra
+            simon
           </Typography>
         </Box>
 
@@ -124,7 +124,7 @@ function HeaderComponent() {
               pb: '2px',
             }}
           >
-            new terra
+            simon
           </Typography>
         </Box>
 
