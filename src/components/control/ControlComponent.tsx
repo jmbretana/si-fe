@@ -13,7 +13,7 @@ import { transformToDecimal } from '../../utils/utils';
 import Save from '@mui/icons-material/Save';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import { Box, Grid } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 interface ControlComponentProps {
   title: string | React.ReactNode;
   min: number;
@@ -80,32 +80,42 @@ const ControlComponent: React.FunctionComponent<ControlComponentProps> = (
         p: 2,
       }}
     >
-      {/* Título - responsive */}
       <Box
         sx={{
           minWidth: { xs: '100%', md: '200px' },
           maxWidth: { xs: '100%', md: '200px' },
         }}
       >
-        <h1 className={`${'display-6'}`}>{props.title}</h1>
+        <Typography
+          variant="h6"
+          sx={{
+            color: 'rgb(187, 187, 187)',
+            fontSize: '2.5em',
+          }}
+        >
+          {props.title}
+        </Typography>
       </Box>
 
-      {/* Valor actual - responsive */}
       <Box
         sx={{
           minWidth: { xs: '100%', md: '150px' },
           maxWidth: { xs: '100%', md: '150px' },
-          textAlign: 'center',
+          textAlign: 'right',
         }}
       >
-        <h1 className="display-1 text-white fw-bold">
+        <Typography
+          variant="h2"
+          sx={{
+            fontWeight: 700,
+          }}
+        >
           {props.type === 'ori'
             ? transformToDecimal(props.newValue)
             : props.newValue}
-        </h1>
+        </Typography>
       </Box>
 
-      {/* Controles - responsive */}
       <Box
         sx={{
           minWidth: { xs: '100%', md: '300px' },
