@@ -16,7 +16,7 @@ const getApiUrl = (): string => {
 
   // Fallback based on hostname
   if (window.location.hostname !== 'localhost') {
-    return 'https://simonitor-api.netlify.app/.netlify/functions/api';
+    return 'https://simonitor-api.netlify.app/api';
   }
 
   return 'http://localhost:3001/api';

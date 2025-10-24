@@ -4,10 +4,10 @@
 
 // Determine API URL based on environment
 const getApiUrl = (): string => {
-  if (window.location.hostname !== "localhost") {
-    return "https://simonitor-api.netlify.app/.netlify/functions/api";
+  if (window.location.hostname !== 'localhost') {
+    return 'https://simonitor-api.netlify.app/api';
   }
-  return "http://localhost:3001/api";
+  return 'http://localhost:3001/api';
 };
 
 export const API_URL_SERVER = getApiUrl();
