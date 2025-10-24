@@ -112,63 +112,6 @@ export default function MenuDesktop() {
               </Box>
             </Box>
           </ListItem>
-
-          {/* Submenu desplegable */}
-          {item.options &&
-            item.options.length > 0 &&
-            hoveredItem === item.key && (
-              <Box
-                sx={{
-                  position: 'absolute',
-                  top: '100%',
-                  left: 0,
-                  minWidth: '200px',
-                  backgroundColor:
-                    theme.palette.mode === 'dark' ? COLORS.black : COLORS.white,
-                  boxShadow: '0px 4px 8px rgba(0,0,0,0.1)',
-                  borderRadius: '8px',
-                  zIndex: 1000,
-                  border: `1px solid ${
-                    theme.palette.mode === 'dark'
-                      ? COLORS.grey
-                      : COLORS.grey_light
-                  }`,
-                  padding: '8px 0',
-                  marginTop: '10px',
-                  display: { xs: 'none', lg: 'block' },
-                }}
-              >
-                {item.options.map((option) => (
-                  <Box
-                    key={option.key}
-                    onClick={goToSection(option.link)}
-                    sx={{
-                      padding: '12px 16px',
-                      cursor: 'pointer',
-                      color:
-                        theme.palette.mode === 'dark'
-                          ? COLORS.white
-                          : COLORS.black,
-                      fontSize: '14px',
-                      fontFamily: 'Lexend',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 1,
-                      ':hover': {
-                        backgroundColor:
-                          theme.palette.mode === 'dark'
-                            ? COLORS.grey
-                            : COLORS.grey_light,
-                        color: COLORS.black,
-                      },
-                    }}
-                  >
-                    <Box pt={0.5}>{option.icon}</Box>
-                    <Box>{option.text}</Box>
-                  </Box>
-                ))}
-              </Box>
-            )}
         </Box>
       ))}
     </Stack>

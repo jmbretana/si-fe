@@ -123,7 +123,10 @@ export default function SignUp() {
     const checkAuth = async () => {
       try {
         if (isAuthenticated) {
-          navigate('/presupuestos');
+          // Open monitor in new tab
+          window.open('/monitor', '_blank');
+          // Navigate to control
+          navigate('/control');
         }
       } finally {
         setIsCheckingAuth(false);
@@ -137,7 +140,11 @@ export default function SignUp() {
     if (submit && status === USER_LOGIN_SUCCESS) {
       login(formData);
       setSubmit(false);
-      navigate('/presupuestos');
+
+      window.open('/control', '_blank');
+
+      // Navigate to monitor
+      navigate('/monitor');
     }
 
     if (status === USER_LOGIN_FAIL) {

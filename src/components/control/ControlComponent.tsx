@@ -145,6 +145,9 @@ const ControlComponent: React.FunctionComponent<ControlComponentProps> = (
               value={props.newValue}
               onChange={(e) => onChangeValue(Number(e.target.value))}
               disabled={props.disabled}
+              style={{
+                width: '100%',
+              }}
             />
           </Box>
         </Box>

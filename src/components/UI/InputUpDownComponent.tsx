@@ -3,7 +3,8 @@ import { FaArrowCircleDown, FaArrowCircleUp } from 'react-icons/fa';
 import { useEffect, useState } from 'react';
 import { clsx } from 'clsx';
 import { transformToDecimal, invertDecimal } from '@utils/utils';
-import { Box } from '@mui/material';
+import { Box, Button, ButtonGroup } from '@mui/material';
+import { Input } from '@common/input';
 
 interface InputUpDownComponentProps {
   value: number;
@@ -77,37 +78,36 @@ const InputUpDownComponent: React.FunctionComponent<
   };
 
   return (
-    <Box className="input-group">
-      <input
-        type="text"
-        className="form-control"
-        placeholder=""
-        aria-label=""
+    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+      <Input
+        id="value"
+        name="value"
+        label=""
         value={newValue}
-        onChange={(e) => editValue(e.target.value)}
+        onChange={editValue}
       />
-      <button
-        type="button"
-        onClick={() => downValue(newValue)}
-        disabled={props.disabled}
-        className={clsx(
-          { 'bg-secondary': props.disabled },
-          { 'btn btn-secondary': true },
-        )}
-      >
-        <FaArrowCircleDown />
-      </button>
-      <button
-        className={clsx(
-          { 'bg-secondary': props.disabled },
-          { 'btn btn-secondary btn-success': true },
-        )}
-        type="button"
-        onClick={() => upValue(newValue)}
-        disabled={props.disabled}
-      >
-        <FaArrowCircleUp />
-      </button>
+      <ButtonGroup variant="contained" aria-label="Basic button group">
+        <Button
+          onClick={() => downValue(newValue)}
+          disabled={props.disabled}
+          color="inherit"
+          sx={{
+            height: '35px',
+          }}
+        >
+          <FaArrowCircleDown />
+        </Button>
+        <Button
+          onClick={() => upValue(newValue)}
+          disabled={props.disabled}
+          color="success"
+          sx={{
+            height: '35px',
+          }}
+        >
+          <FaArrowCircleUp />
+        </Button>
+      </ButtonGroup>
     </Box>
   );
 };

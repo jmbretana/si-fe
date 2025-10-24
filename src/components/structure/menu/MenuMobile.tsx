@@ -96,9 +96,6 @@ const MenuMobile: React.FunctionComponent = () => {
         <Divider />
 
         <MenuList>
-          <MenuItem onClick={navigateToLink('/configuracion')}>
-            <ListItemText>Configuración</ListItemText>
-          </MenuItem>
           <MenuItem onClick={logOutHandler}>
             <ListItemText sx={{ fontSize: '1.9rem' }}>Logout</ListItemText>
           </MenuItem>

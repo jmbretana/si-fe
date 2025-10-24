@@ -1,5 +1,5 @@
-import * as React from "react";
-import { useNavigate } from "react-router-dom";
+import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import {
   Box,
@@ -10,14 +10,14 @@ import {
   Menu,
   MenuItem,
   MenuList,
-} from "@mui/material";
-import { capitalizeFirstLetter } from "@utils/utils";
+} from '@mui/material';
+import { capitalizeFirstLetter } from '@utils/utils';
 // import { useAuth } from "@auth/AuthContext";
 // Alternativa: usar el hook directo de Redux
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from '../../hooks/useAuth';
 
-import LogoutIcon from "@mui/icons-material/Logout";
-import SettingsIcon from "@mui/icons-material/Settings";
+import LogoutIcon from '@mui/icons-material/Logout';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 export default function HeaderUser() {
   const navigate = useNavigate();
@@ -35,31 +35,27 @@ export default function HeaderUser() {
   // Obtener el nombre del usuario desde la sesión de autenticación
   const username = user
     ? capitalizeFirstLetter(getFullName() || user.username)
-    : "Usuario";
+    : 'Usuario';
 
   const logOutHandler = async () => {
     try {
       await logout();
       // Forzar redirección después del logout usando React Router
-      navigate("/login");
+      navigate('/login');
     } catch (error) {
-      console.error("Logout error:", error);
+      console.error('Logout error:', error);
       // Incluso si hay error, redirigir
-      navigate("/login");
+      navigate('/login');
     }
   };
 
-  const configHandler = () => {
-    navigate("/configuracion");
-  };
-
   return (
-    <Box alignContent={"center"}>
+    <Box alignContent={'center'}>
       <Button
         id="basic-button"
-        aria-controls={open ? "basic-menu" : undefined}
+        aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
+        aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
         {username}
@@ -70,22 +66,15 @@ export default function HeaderUser() {
         open={open}
         onClose={handleClose}
         MenuListProps={{
-          "aria-labelledby": "basic-button",
+          'aria-labelledby': 'basic-button',
         }}
       >
         <MenuList dense>
-          <MenuItem onClick={configHandler}>
-            <ListItemIcon>
-              <SettingsIcon />
-            </ListItemIcon>
-            <ListItemText>Configuración</ListItemText>
-          </MenuItem>
-          <Divider />
           <MenuItem onClick={logOutHandler}>
             <ListItemIcon>
               <LogoutIcon />
             </ListItemIcon>
-            <ListItemText sx={{ fontSize: "1.9rem" }}>Logout</ListItemText>
+            <ListItemText sx={{ fontSize: '1.9rem' }}>Logout</ListItemText>
           </MenuItem>
         </MenuList>
       </Menu>
