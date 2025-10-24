@@ -32,6 +32,7 @@ class OriControllerClass extends BaseController {
    * Update ORI data
    */
   async update(data: controlDataOri): Promise<controlDataOri> {
+    console.log('Updating ORI data:', data);
     return this.put<controlDataOri, controlDataOri>('', data);
   }
 
@@ -39,14 +40,14 @@ class OriControllerClass extends BaseController {
    * Save ORI data to history
    */
   async save(data: controlDataOri): Promise<OriHistoryItem> {
-    return this.post<OriHistoryItem, controlDataOri>('/save', data);
+    return this.post<OriHistoryItem, controlDataOri>('/saveOri', data);
   }
 
   /**
    * Get last ORI history record
    */
   async getLast(): Promise<controlDataOri> {
-    return this.get<controlDataOri>('/last');
+    return this.get<controlDataOri>('/lastOri');
   }
 
   /**

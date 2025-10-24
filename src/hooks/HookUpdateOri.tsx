@@ -59,7 +59,7 @@ export const updateOri = () => {
       await oriService.reset();
 
       const control: controlDataOri = {
-        id: 'ori',
+        id: 1,
         ori: 0,
         oriSeconds: 1,
       };

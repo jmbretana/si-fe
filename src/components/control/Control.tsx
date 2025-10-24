@@ -125,8 +125,8 @@ const Control = () => {
           </Box>
 
           {oriView}
-          {spView}
-          {fcView}
+          {/* spView */}
+          {/* fcView */}
         </Box>
       )}
     </Box>

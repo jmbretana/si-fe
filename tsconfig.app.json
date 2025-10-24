@@ -41,6 +41,8 @@
       "@types": ["src/middleware/types"],
       "@types/*": ["src/middleware/types/*"],
 
+      "@OriActionTypes": ["src/middleware/types/OriActionTypes"],
+
       "@AccountActionTypes": ["src/middleware/types/AccountActionTypes"],
       "@AccountProviderActionTypes": [
         "src/middleware/types/AccountProviderActionTypes"

@@ -1,10 +1,14 @@
+export interface Action {
+  payload?: object;
+  type: string;
+}
 export interface controlData {
   id: string;
   value: number;
   seconds: number;
 }
 export interface controlDataOri {
-  id: string;
+  id: number;
   ori: number;
   oriSeconds: number;
 }

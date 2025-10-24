@@ -30,7 +30,7 @@ const ControlComponentOri: React.FunctionComponent<OriProps> = (props) => {
   } = updateOri();
 
   useEffect(() => {
-    if (dataLastOri) getLastOri();
+    if (!dataLastOri) getLastOri();
   }, []);
 
   useEffect(() => {
@@ -62,7 +62,7 @@ const ControlComponentOri: React.FunctionComponent<OriProps> = (props) => {
     if (newControl) {
       if (newSeconds === 1)
         addDataOri({
-          id: 'ori',
+          id: 1,
           ori: newControl.ori,
           oriSeconds: 1,
         });
@@ -78,7 +78,7 @@ const ControlComponentOri: React.FunctionComponent<OriProps> = (props) => {
   const changeCounterHandler = (oriCounter: number) => {
     if (newControl && newSeconds > 1) {
       addDataOri({
-        id: 'ori',
+        id: 1,
         ori: oriCounter,
         oriSeconds: 1,
       });
