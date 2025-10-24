@@ -71,3 +71,30 @@ export interface SpUpdateInput {
 export interface errorData {
   message: string;
 }
+
+export interface AuthUser {
+  id: string;
+  username: string;
+  name?: string;
+  surname?: string;
+  email?: string;
+  role?: string;
+  avatar?: string;
+  lastLogin?: string;
+}
+
+export interface AuthState {
+  user: AuthUser | null;
+  token: string | null;
+  isAuthenticated: boolean;
+  isLoading: boolean;
+  error: string | null;
+  loginAttempts: number;
+  lastLoginAttempt?: string;
+}
+
+export interface LoginCredentials {
+  username: string;
+  password: string;
+  rememberMe?: boolean;
+}

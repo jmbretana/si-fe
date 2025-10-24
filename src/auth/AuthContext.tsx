@@ -32,11 +32,18 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   const authHook = useAuthHook();
 
   // Initialize auth state from storage on mount
+  // TEMPORAL: Inicialización automática deshabilitada
+  // Descomentar para volver a habilitar
+  /*
   useEffect(() => {
     authHook.initializeAuth();
   }, [authHook.initializeAuth]);
+  */
 
   // Auto-check token validity every configurable interval
+  // TEMPORAL: Verificación automática de token deshabilitada
+  // Descomentar para volver a habilitar
+  /*
   useEffect(() => {
     if (authHook.isAuthenticated) {
       const intervalMinutes = SESSION_CONFIG.TOKEN_CHECK_INTERVAL_MINUTES;
@@ -52,6 +59,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
       return () => clearInterval(interval);
     }
   }, [authHook.isAuthenticated, authHook.checkToken]);
+  */
 
   // Debug: Monitor authentication state changes
   useEffect(() => {

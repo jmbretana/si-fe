@@ -23,17 +23,21 @@ function HeaderComponent() {
   const { isAuthenticated } = useAuth(); // Obtener estado de autenticación
   const isMobile = useMediaQuery('(max-width:900px)'); // Detectar si la resolución es móvil
 
+  // TEMPORAL: Forzar autenticación para mostrar menú
+  const forceAuthenticated = true;
+  const effectiveAuth = forceAuthenticated || isAuthenticated;
+
   // Debug: Monitor header rendering decisions
   useEffect(() => {
     logger.info(
-      `Header: Rendering decision - isMobile: ${isMobile}, isAuthenticated: ${isAuthenticated}`,
+      `Header: Rendering decision - isMobile: ${isMobile}, isAuthenticated: ${effectiveAuth}`,
     );
-    if (!isMobile && !isAuthenticated) {
+    if (!isMobile && !effectiveAuth) {
       logger.warn(
         'Header: Showing unauthenticated desktop header (session might be expired)',
       );
     }
-  }, [isMobile, isAuthenticated]);
+  }, [isMobile, effectiveAuth]);
 
   const viewDesktopMenu = (
     <AppBar
@@ -51,37 +55,24 @@ function HeaderComponent() {
         }}
       >
         <Box display={'flex'}>
-          <TerrainIcon
-            sx={{
-              color:
-                theme.palette.mode === 'dark' ? COLORS.white : COLORS.grey_dark,
-              fontSize: '40px',
+          <img
+            src="/logo-simon.png"
+            alt="Logo Simon"
+            style={{
+              width: '140px',
+              height: '40px',
+              objectFit: 'contain',
+              marginRight: '8px',
             }}
           />
-          <Typography
-            variant="h6"
-            sx={{
-              color:
-                theme.palette.mode === 'dark' ? COLORS.white : COLORS.grey_dark,
-              flexGrow: 1,
-              fontWeight: 450,
-              fontFamily: 'Lexend, Arial, Helvetica, sans-serif',
-              display: { lg: 'none', xl: 'block' }, // Oculta en mobile (xs y sm)
-              paddingLeft: '8px',
-              pt: '3px',
-              pb: '2px',
-            }}
-          >
-            simon
-          </Typography>
         </Box>
 
-        {isAuthenticated && <MenuDesktop />}
+        {effectiveAuth && <MenuDesktop />}
 
         <Box display={'flex'}>
           <SwitchTheme />
 
-          {isAuthenticated && <HeaderUser />}
+          {effectiveAuth && <HeaderUser />}
         </Box>
       </Toolbar>
     </AppBar>
@@ -103,29 +94,11 @@ function HeaderComponent() {
         }}
       >
         <Box display={'flex'}>
-          <TerrainIcon
-            sx={{
-              color:
-                theme.palette.mode === 'dark' ? COLORS.white : COLORS.grey_dark,
-              fontSize: '40px',
-            }}
+          <img
+            src="/logo-simon.png"
+            alt="Logo Simon"
+            style={{ width: '140px', height: '80px', objectFit: 'contain' }}
           />
-          <Typography
-            variant="h6"
-            sx={{
-              color:
-                theme.palette.mode === 'dark' ? COLORS.white : COLORS.grey_dark,
-              flexGrow: 1,
-              fontWeight: 450,
-              fontFamily: 'Lexend, Arial, Helvetica, sans-serif',
-              display: { lg: 'none', xl: 'block' },
-              paddingLeft: '8px',
-              pt: '3px',
-              pb: '2px',
-            }}
-          >
-            simon
-          </Typography>
         </Box>
 
         <Box display={'flex'}>
@@ -151,11 +124,13 @@ function HeaderComponent() {
         }}
       >
         <Box display={'flex'}>
-          <TerrainIcon
-            sx={{
-              color:
-                theme.palette.mode === 'dark' ? COLORS.white : COLORS.grey_dark,
-              fontSize: '40px',
+          <img
+            src="/logo-simon.png"
+            alt="Logo Simon"
+            style={{
+              width: '140px',
+              height: '40px',
+              objectFit: 'contain',
             }}
           />
         </Box>
@@ -176,8 +151,8 @@ function HeaderComponent() {
       }}
     >
       <CssBaseline />
-      {!isMobile && isAuthenticated && viewDesktopMenu}
-      {!isMobile && !isAuthenticated && viewDesktopUnauthenticated}
+      {!isMobile && effectiveAuth && viewDesktopMenu}
+      {!isMobile && !effectiveAuth && viewDesktopUnauthenticated}
       {isMobile && viewDesktopMobile}
 
       <Box component="main">

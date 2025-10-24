@@ -223,20 +223,16 @@ export default function SignUp() {
           )}
 
           <Card variant="outlined">
-            <Box display={'flex'}>
-              <TerrainIcon />
-
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{
-                  flexGrow: 1,
-                  display: { xs: 'none', sm: 'block' },
-                  paddingLeft: '7px',
+            <Box display={'flex'} justifyContent="center" mb={2}>
+              <img
+                src="/logo-simon.png"
+                alt="Logo Simon"
+                style={{
+                  width: '140px',
+                  height: '40px',
+                  objectFit: 'contain',
                 }}
-              >
-                Simon
-              </Typography>
+              />
             </Box>
             <Typography
               component="h1"

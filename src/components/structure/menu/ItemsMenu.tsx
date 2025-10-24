@@ -1,16 +1,9 @@
 import React from 'react';
 import { COLORS } from '@values/colors';
 
-import DashboardOutlinedIcon from '@mui/icons-material/DashboardOutlined';
-import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
-import MonetizationOnOutlinedIcon from '@mui/icons-material/MonetizationOnOutlined';
-import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-import StorefrontIcon from '@mui/icons-material/Storefront';
-import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
+import DisplaySettingsIcon from '@mui/icons-material/DisplaySettings';
+import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 
-// Roles permitidos para ver el Dashboard
 const DASHBOARD_ALLOWED_ROLES = ['admin', 'superadmin'];
 
 // Función para verificar si un usuario puede ver el Dashboard
@@ -25,21 +18,21 @@ export const getMenuListItems = (userRole?: string) => {
     {
       key: 3,
       text: 'Monitor',
-      icon: <MonetizationOnOutlinedIcon />,
+      icon: <MonitorHeartIcon />,
       link: '/monitor',
       name: 'monitor',
     },
     {
       key: 1,
       text: 'Control',
-      icon: <GroupOutlinedIcon />,
+      icon: <DisplaySettingsIcon />,
       link: '/control',
       name: 'control',
     },
   ];
 
   // Filtrar items basándose en el rol del usuario
-  const filteredItems = allItems.filter((item) => {
+  const filteredItems = allItems.filter((item: any) => {
     if (item.requiresRole) {
       return canViewDashboard(userRole);
     }
@@ -64,70 +57,17 @@ export const menuListItems = {
   items: [
     {
       key: 3,
-      text: 'Presupuestos',
-      icon: <MonetizationOnOutlinedIcon />,
-      link: '/presupuestos',
-      name: 'presupuesto',
-    },
-    {
-      key: 4,
-      text: 'Balance',
-      icon: <AccountBalanceIcon />,
-      link: '/balance',
-      name: 'balance',
-      options: [
-        {
-          key: 0,
-          text: 'Caja',
-          icon: <PointOfSaleIcon />,
-          link: '/caja',
-          name: 'caja',
-          parent: 'balance',
-        },
-        {
-          key: 0,
-          text: 'Cuenta corriente',
-          icon: <AccountBalanceIcon />,
-          link: '/balance',
-          name: 'ctacte',
-          parent: 'balance',
-        },
-      ],
+      text: 'Control',
+      icon: <DisplaySettingsIcon />,
+      link: '/control',
+      name: 'control',
     },
     {
       key: 1,
-      text: 'Clientes',
-      icon: <GroupOutlinedIcon />,
-      link: '/clientes',
-      name: 'cliente',
-    },
-    {
-      key: 2,
-      text: 'Productos',
-      icon: <Inventory2OutlinedIcon />,
-      link: '/productos',
-      name: 'producto',
-    },
-    {
-      key: 5,
-      text: 'Distribucion',
-      icon: <LocalShippingIcon />,
-      link: '/distribucion',
-      name: 'distribucion',
-    },
-    {
-      key: 5,
-      text: 'Proveedores',
-      icon: <StorefrontIcon />,
-      link: '/proveedores',
-      name: 'proveedores',
-    },
-    {
-      key: 0,
-      text: 'Dashboard',
-      icon: <DashboardOutlinedIcon />,
-      link: '/dashboard',
-      name: 'dashboard',
+      text: 'Monitor',
+      icon: <MonitorHeartIcon />,
+      link: '/monitor',
+      name: 'monitor',
     },
   ],
 };
@@ -136,60 +76,18 @@ export const menuListItems = {
 export const getMenuListItemsMobile = (userRole?: string) => {
   const allItems = [
     {
-      key: 3,
-      text: 'Presupuestos',
-      icon: <MonetizationOnOutlinedIcon />,
-      link: '/presupuestos',
-      name: 'presupuesto',
-    },
-    {
-      key: 4,
-      text: 'Cuentas Corrientes',
-      icon: <AccountBalanceIcon />,
-      link: '/balance',
-      name: 'balance',
-    },
-    {
-      key: 10,
-      text: 'Caja',
-      icon: <PointOfSaleIcon />,
-      link: '/caja',
-      name: 'caja',
-    },
-    {
-      key: 1,
-      text: 'Clientes',
-      icon: <GroupOutlinedIcon />,
-      link: '/clientes',
-      name: 'cliente',
-    },
-    {
-      key: 2,
-      text: 'Productos',
-      icon: <Inventory2OutlinedIcon />,
-      link: '/productos',
-      name: 'producto',
-    },
-    {
       key: 5,
-      text: 'Distribucion',
-      icon: <LocalShippingIcon />,
-      link: '/distribucion',
-      name: 'distribucion',
-    },
-    {
-      key: 5,
-      text: 'Proveedores',
-      icon: <StorefrontIcon />,
-      link: '/proveedores',
-      name: 'proveedores',
+      text: 'Control',
+      icon: <DisplaySettingsIcon />,
+      link: '/control',
+      name: 'control',
     },
     {
       key: 0,
-      text: 'Dashboard',
-      icon: <DashboardOutlinedIcon />,
-      link: '/dashboard',
-      name: 'dashboard',
+      text: 'Monitor',
+      icon: <MonitorHeartIcon />,
+      link: '/monitor',
+      name: 'monitor',
       requiresRole: true, // Marca que requiere verificación de rol
     },
   ];
@@ -219,59 +117,17 @@ export const menuListItemsMobile = {
   items: [
     {
       key: 3,
-      text: 'Presupuestos',
-      icon: <MonetizationOnOutlinedIcon />,
-      link: '/presupuestos',
-      name: 'presupuesto',
+      text: 'Control',
+      icon: <DisplaySettingsIcon />,
+      link: '/control',
+      name: 'control',
     },
     {
       key: 4,
-      text: 'Cuentas Corrientes',
-      icon: <AccountBalanceIcon />,
-      link: '/balance',
-      name: 'balance',
-    },
-    {
-      key: 10,
-      text: 'Caja',
-      icon: <PointOfSaleIcon />,
-      link: '/caja',
-      name: 'caja',
-    },
-    {
-      key: 1,
-      text: 'Clientes',
-      icon: <GroupOutlinedIcon />,
-      link: '/clientes',
-      name: 'cliente',
-    },
-    {
-      key: 2,
-      text: 'Productos',
-      icon: <Inventory2OutlinedIcon />,
-      link: '/productos',
-      name: 'producto',
-    },
-    {
-      key: 5,
-      text: 'Distribucion',
-      icon: <LocalShippingIcon />,
-      link: '/distribucion',
-      name: 'distribucion',
-    },
-    {
-      key: 5,
-      text: 'Proveedores',
-      icon: <StorefrontIcon />,
-      link: '/proveedores',
-      name: 'proveedores',
-    },
-    {
-      key: 0,
-      text: 'Dashboard',
-      icon: <DashboardOutlinedIcon />,
-      link: '/dashboard',
-      name: 'dashboard',
+      text: 'Monitor',
+      icon: <MonitorHeartIcon />,
+      link: '/monitor',
+      name: 'monitor',
     },
   ],
 };
