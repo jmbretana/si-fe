@@ -1,4 +1,4 @@
-const MONITOR_TIME_REFRESH = 10000;
+const MONITOR_TIME_REFRESH = 1000;
 const MONITOR_LEN = 120;
 
 const ORI_COLOR = '';
