@@ -46,8 +46,8 @@ const ControlComponentFc: React.FunctionComponent = () => {
   }, [dataFc]);
 
   useEffect(() => {
-    if (dataLastFc.length > 0) {
-      setNewControl(dataLastFc[0]);
+    if (dataLastFc) {
+      setNewControl(dataLastFc);
     }
   }, [dataLastFc]);
 

@@ -45,8 +45,8 @@ class OriControllerClass extends BaseController {
   /**
    * Get last ORI history record
    */
-  async getLast(): Promise<OriHistoryData> {
-    return this.get<OriHistoryData>('/last');
+  async getLast(): Promise<controlDataOri> {
+    return this.get<controlDataOri>('/last');
   }
 
   /**

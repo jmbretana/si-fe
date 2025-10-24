@@ -13,7 +13,6 @@ export interface OriHistoryData {
   id: string;
   indice?: number;
   oriSeconds?: number;
-  oriMinutes?: number;
   timestamp?: string;
 }
 
@@ -29,14 +28,12 @@ export interface FCHistoryData {
   fc: number;
   frecuencia: number;
   fcSeconds: number;
-  fcMinutes: number;
   timestamp: string;
 }
 
 export interface FCUpdateInput {
   frecuencia: number;
   fcSeconds: number;
-  fcMinutes: number;
 }
 
 // SP

@@ -14,13 +14,8 @@ export { default as ButtonCancel } from "./button/ButtonCancel";
 export { default as BoxCardWhite } from "./BoxCardWhite";
 
 export { FormGridColumn, FormGridRow } from "./Components";
-export { default as ChipBudgetStatus } from "./ChipBudgetStatus";
-export { default as ChipMoney } from "./ChipMoney";
-export { default as ChipClientBalance } from "./ChipClientBalance";
-export { default as ClientBalance } from "./ChipClientBalance";
 export { default as FormLabel } from "./FormLabel";
 export { default as Loading } from "./Loading";
-export { default as Patente } from "./Patente";
 export { default as TableComponent } from "./TableComponent";
 export { default as SwitchTheme } from "./SwitchTheme";
 export { default as TittleHeader } from "./TittleHeader";

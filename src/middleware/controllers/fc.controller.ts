@@ -34,8 +34,8 @@ class FcControllerClass extends BaseController {
   /**
    * Get last FC history record
    */
-  async getLast(): Promise<FCHistoryData[]> {
-    return this.get<FCHistoryData[]>('/last');
+  async getLast(): Promise<FCHistoryData> {
+    return this.get<FCHistoryData>('/last');
   }
 
   /**

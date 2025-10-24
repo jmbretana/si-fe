@@ -6,7 +6,7 @@ import { controlDataSp, SpHistoryData, errorData } from '@interfaces';
 
 export const HookUpdateSp = () => {
   const [dataSp, setDataSp] = useState<controlDataSp | null>(null);
-  const [dataLastSp, setDataLastSp] = useState<Array<controlDataSp>>([]);
+  const [dataLastSp, setDataLastSp] = useState<controlDataSp>();
 
   const [savingSp, setSavingSp] = useState<boolean>(false);
   const [loadingDataSp, setLoadingDataSp] = useState<boolean>(false);
@@ -17,8 +17,8 @@ export const HookUpdateSp = () => {
   const getDataSp = async () => {
     try {
       setLoadingDataSp(true);
-      const response: any = await spService.getData();
-      setDataSp(response.data);
+      const data: any = await spService.getData();
+      setDataSp(data);
     } catch (error: any) {
       console.log(error);
       setErrorSp(error.response?.data?.error?.message || error.message);
@@ -30,22 +30,8 @@ export const HookUpdateSp = () => {
   const getLastSp = async () => {
     try {
       setLoadingDataSp(true);
-      const data: SpHistoryData[] = await spService.getLast();
-      const last = data && data.length > 0 ? data[0] : null;
-
-      if (last) {
-        setDataLastSp([
-          {
-            id: last.id,
-            sp: last.sp,
-            spSeconds: last.spSeconds,
-            spMinutes: last.spMinutes,
-            saturacion: last.saturacion,
-          },
-        ]);
-      } else {
-        setDataLastSp([]);
-      }
+      const data: any = await spService.getLast();
+      setDataLastSp(data.data);
     } catch (error: any) {
       console.log(error);
       setErrorSp(error.response?.data?.error?.message || error.message);

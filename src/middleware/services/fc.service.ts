@@ -14,7 +14,7 @@ export const fcService = {
     return await fcController.save(input);
   },
 
-  async getLast(): Promise<FCHistoryData[]> {
+  async getLast(): Promise<FCHistoryData> {
     return await fcController.getLast();
   },
 

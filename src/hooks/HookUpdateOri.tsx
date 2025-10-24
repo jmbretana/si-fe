@@ -5,8 +5,8 @@ import { oriService } from '@services/ori.service';
 import { controlDataOri, OriHistoryData, errorData } from '@interfaces';
 
 export const updateOri = () => {
-  const [dataOri, setDataOri] = useState<Array<controlDataOri>>([]);
-  const [dataLastOri, setDataLastOri] = useState<Array<controlDataOri>>([]);
+  const [dataOri, setDataOri] = useState<controlDataOri>();
+  const [dataLastOri, setDataLastOri] = useState<controlDataOri>();
 
   const [savingOri, setSavingOri] = useState<boolean>(false);
   const [savingAddOri, setSavingAddOri] = useState<boolean>(false);
@@ -19,14 +19,8 @@ export const updateOri = () => {
   const getDataOri = async () => {
     try {
       setLoadingDataOri(true);
-      const data: controlDataOri = await oriService.getData();
-      setDataOri([
-        {
-          id: data.id,
-          ori: data.ori,
-          oriSeconds: data.oriSeconds,
-        },
-      ]);
+      const data: any = await oriService.getData();
+      setDataOri(data);
     } catch (error: any) {
       console.log(error);
       setErrorOri(error.response?.data?.error?.message || error.message);
@@ -38,14 +32,8 @@ export const updateOri = () => {
   const getLastOri = async () => {
     try {
       setLoadingDataOri(true);
-      const data: OriHistoryData = await oriService.getLast();
-      setDataLastOri([
-        {
-          id: data.id,
-          ori: data.indice || 0,
-          oriSeconds: data.oriSeconds || 0,
-        },
-      ]);
+      const data: any = await oriService.getLast();
+      setDataLastOri(data.data);
     } catch (error: any) {
       setErrorOri(error.response?.data?.error?.message || error.message);
     } finally {

@@ -6,7 +6,7 @@ import { controlDataFc, FCHistoryData, errorData } from '@interfaces';
 
 export const HookUpdateFc = () => {
   const [dataFc, setDataFc] = useState<controlDataFc>();
-  const [dataLastFc, setDataLastFc] = useState<Array<controlDataFc>>([]);
+  const [dataLastFc, setDataLastFc] = useState<controlDataFc>();
 
   const [savingFc, setSavingFc] = useState<boolean>(false);
 
@@ -32,14 +32,8 @@ export const HookUpdateFc = () => {
   const getLastFc = async () => {
     try {
       setLoadingLastFc(true);
-      const data: FCHistoryData[] = await fcService.getLast();
-      setDataLastFc([
-        {
-          id: data[0].id,
-          fc: data[0].fc,
-          fcSeconds: data[0].fcSeconds,
-        },
-      ]);
+      const data: any = await fcService.getLast();
+      setDataLastFc(data.data);
     } catch (error: any) {
       console.log(error);
       setErrorFc(error.response?.data?.error?.message || error.message);

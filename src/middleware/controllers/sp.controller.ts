@@ -34,8 +34,8 @@ class SpControllerClass extends BaseController {
   /**
    * Get last SP history record
    */
-  async getLast(): Promise<SpHistoryData[]> {
-    return this.get<SpHistoryData[]>('/last');
+  async getLast(): Promise<controlDataSp> {
+    return this.get<controlDataSp>('/last');
   }
 
   /**

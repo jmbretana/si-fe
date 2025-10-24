@@ -30,7 +30,7 @@ const ControlComponentOri: React.FunctionComponent<OriProps> = (props) => {
   } = updateOri();
 
   useEffect(() => {
-    if (dataLastOri.length === 0) getLastOri();
+    if (dataLastOri) getLastOri();
   }, []);
 
   useEffect(() => {
@@ -38,11 +38,11 @@ const ControlComponentOri: React.FunctionComponent<OriProps> = (props) => {
   }, [props.disabled]);
 
   useEffect(() => {
-    if (dataLastOri.length > 0) {
-      setOldValue(dataLastOri[0].ori);
-      setNewValue(dataLastOri[0].ori);
-      setNewControl(dataLastOri[0]);
-      changeSecondsHandler(dataLastOri[0].oriSeconds);
+    if (dataLastOri) {
+      setOldValue(dataLastOri.ori);
+      setNewValue(dataLastOri.ori);
+      setNewControl(dataLastOri);
+      changeSecondsHandler(dataLastOri.oriSeconds);
     }
   }, [dataLastOri]);
 

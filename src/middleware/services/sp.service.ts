@@ -14,7 +14,7 @@ export const spService = {
     return await spController.save(input);
   },
 
-  async getLast(): Promise<SpHistoryData[]> {
+  async getLast(): Promise<controlDataSp> {
     return await spController.getLast();
   },
 

@@ -30,7 +30,7 @@ const ControlComponentSp: React.FunctionComponent<SpProps> = (props) => {
 
   useEffect(() => {
     if (!dataSp) getDataSp();
-    if (dataLastSp.length === 0) getLastSp();
+    if (!dataLastSp) getLastSp();
   }, []);
 
   useEffect(() => {
@@ -53,8 +53,8 @@ const ControlComponentSp: React.FunctionComponent<SpProps> = (props) => {
   }, [dataSp]);
 
   useEffect(() => {
-    if (dataLastSp.length > 0) {
-      setNewControl(dataLastSp[0]);
+    if (dataLastSp) {
+      setNewControl(dataLastSp);
     }
   }, [dataLastSp]);
 

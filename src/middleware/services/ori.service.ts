@@ -14,7 +14,7 @@ export const oriService = {
     return await oriController.save(input);
   },
 
-  async getLast(): Promise<OriHistoryData> {
+  async getLast(): Promise<controlDataOri> {
     return await oriController.getLast();
   },
 

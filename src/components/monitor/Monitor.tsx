@@ -53,23 +53,22 @@ const Monitor = () => {
   }, [hourMinutes]);
 
   useEffect(() => {
-    if (dataLastOri.length > 0) {
-      setDataLoadOri(dataLastOri[0]);
+    console.log('dataLastOri', dataLastOri);
+    console.log('dataLastSp', dataLastSp);
+    console.log('dataLastFc', dataLastFc);
+    if (dataLastOri) {
+      setDataLoadOri(dataLastOri);
     }
 
-    if (dataLastSp.length > 0) {
-      setDataLoadSp(dataLastSp[0]);
+    if (dataLastSp) {
+      setDataLoadSp(dataLastSp);
     }
 
-    if (dataLastFc.length > 0) {
-      setDataLoadFc(dataLastFc[0]);
+    if (dataLastFc) {
+      setDataLoadFc(dataLastFc);
     }
 
-    if (
-      dataLastFc.length > 0 &&
-      dataLastOri.length > 0 &&
-      dataLastSp.length > 0
-    ) {
+    if (dataLastFc && dataLastOri && dataLastSp) {
       setShowLoading(false);
     }
   }, [dataLastOri, dataLastFc, dataLastSp]);
@@ -143,7 +142,7 @@ const Monitor = () => {
           title={'Fc'}
           minValue={1}
           maxValue={300}
-          value={dataLastFc[0].fc!}
+          value={dataLastFc!.fc!}
           start={true}
           loading={loadingDataFc}
           hourMinutes={hourMinutes!}
