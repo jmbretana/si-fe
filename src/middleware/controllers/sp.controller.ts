@@ -28,7 +28,7 @@ class SpControllerClass extends BaseController {
    * Save SP data to history
    */
   async save(data: SpUpdateInput): Promise<SpHistoryData> {
-    return this.post<SpHistoryData, SpUpdateInput>('/save', data);
+    return this.post<SpHistoryData, SpUpdateInput>('/saveSP', data);
   }
 
   /**

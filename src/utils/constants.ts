@@ -5,7 +5,7 @@
 // Determine API URL based on environment
 const getApiUrl = (): string => {
   if (window.location.hostname !== "localhost") {
-    return "https://newterra-api.netlify.app/.netlify/functions/api";
+    return "https://simonitor-api.netlify.app/.netlify/functions/api";
   }
   return "http://localhost:3001/api";
 };

@@ -28,7 +28,7 @@ class FcControllerClass extends BaseController {
    * Save FC data to history
    */
   async save(data: controlDataFc): Promise<FCHistoryData> {
-    return this.post<FCHistoryData, controlDataFc>('/save', data);
+    return this.post<FCHistoryData, controlDataFc>('/saveFP', data);
   }
 
   /**

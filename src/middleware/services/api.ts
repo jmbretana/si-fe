@@ -13,13 +13,13 @@ const getApiUrl = (): string => {
   if (envApiUrl) {
     return envApiUrl;
   }
-  
+
   // Fallback based on hostname
-  if (window.location.hostname !== "localhost") {
-    return "https://newterra-api.netlify.app/.netlify/functions/api";
+  if (window.location.hostname !== 'localhost') {
+    return 'https://simonitor-api.netlify.app/.netlify/functions/api';
   }
-  
-  return "http://localhost:3001/api";
+
+  return 'http://localhost:3001/api';
 };
 
 const API_URL = getApiUrl();
@@ -27,7 +27,7 @@ const API_URL = getApiUrl();
 console.log('🌐 API Configuration:', {
   VITE_API_URL: import.meta.env?.VITE_API_URL,
   API_URL,
-  hostname: window.location.hostname
+  hostname: window.location.hostname,
 });
 
 export const api: AxiosInstance = axios.create({

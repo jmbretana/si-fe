@@ -41,10 +41,8 @@ const ControlComponentSp: React.FunctionComponent<SpProps> = (props) => {
   }, [loadingResetSp]);
 
   useEffect(() => {
-    console.log('dataSp changed', dataSp);
     if (dataSp) {
       setOldValue(dataSp.sp);
-
       setNewValue(dataSp.sp);
       changeSecondsHandler(dataSp.spSeconds);
 
@@ -74,7 +72,7 @@ const ControlComponentSp: React.FunctionComponent<SpProps> = (props) => {
     if (newControl) {
       if (newSeconds === 1) {
         addDataSp({
-          id: 'sp',
+          id: 1,
           sp: newControl.sp,
           spSeconds: 1,
         });
@@ -95,7 +93,7 @@ const ControlComponentSp: React.FunctionComponent<SpProps> = (props) => {
   const changeCounterHandler = (spCounter: number) => {
     if (newControl && newSeconds > 1) {
       addDataSp({
-        id: 'sp',
+        id: 1,
         sp: spCounter,
         spSeconds: 1,
       });

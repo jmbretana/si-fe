@@ -90,7 +90,7 @@ const Monitor = () => {
       sx={{
         border: '2px solid #eee',
         borderRadius: '10px',
-        marginBttom: '10px',
+
         width: '500px',
       }}
     >
@@ -169,19 +169,17 @@ const Monitor = () => {
               paddingTop: '120px',
               paddingLeft: '460px',
               paddingRight: '20px',
+              paddingBottom: '120px',
             }}
           >
-            <Box
-              sx={{
-                width: '560px',
-                paddingBottom: '100px',
-              }}
-            >
+            <Box>
               <Box>{dataLoadFc && heartView}</Box>
 
-              {oriView}
-              {spView}
-              {fcView}
+              <Box gap={2} display="flex" flexDirection="column">
+                {oriView}
+                {spView}
+                {fcView}
+              </Box>
             </Box>
           </Box>
         </Box>

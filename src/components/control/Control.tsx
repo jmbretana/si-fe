@@ -82,7 +82,6 @@ const Control = () => {
         marginBottom: '10px',
       }}
     >
-      {' '}
       <ControlComponentSp onDisableOri={onDisableOriHandler} />
     </Box>
   );
@@ -125,8 +124,8 @@ const Control = () => {
           </Box>
 
           {oriView}
-          {/* spView */}
-          {/* fcView */}
+          {spView}
+          {fcView}
         </Box>
       )}
     </Box>

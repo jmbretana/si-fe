@@ -8,7 +8,7 @@ import '../monitorStyle.css';
 import { ReactECharts } from './ReactECharts';
 
 import { MONITOR_TIME_REFRESH } from '@constants/global';
-import Box from '@mui/system/Box';
+import { Box, Typography } from '@mui/material';
 
 interface MonitorChartProps {
   title: string;
@@ -52,32 +52,78 @@ const MonitorChart: React.FunctionComponent<MonitorChartProps> = (props) => {
 
   //
 
-  const monitorView = (
-    <Box className={'container'}>
-      <div className={'divChart'}>
+  return (
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        p: 2,
+        height: '180px',
+        maxHeight: '250px',
+        overflow: 'hidden',
+        boxSizing: 'border-box',
+      }}
+    >
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          flex: 1,
+          minHeight: 0,
+          overflow: 'hidden',
+        }}
+      >
         <ReactECharts option={option} />
-      </div>
+      </Box>
 
-      <div className="col-4">
-        <div className="row d-flex justify-content-end">
-          <div className="d-flex justify-content-end">
-            <div className="col-8 d-flex align-self-center justify-content-end">
-              <p className="value-monitor">{props.lastValue}</p>
-            </div>
-            <div className="col-4 d-flex align-self-center">
-              {props.title === 'Ori' && <span className="lpm-value">Ori</span>}
-              {props.title === 'Sp02' && (
-                <span className="lpm-value">% Sp02</span>
-              )}
-              {props.title === 'Fc' && <span className="lpm-value">lpm</span>}
-            </div>
-          </div>
-        </div>
-      </div>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'end',
+          mt: 1,
+          flexShrink: 0,
+          gap: 2,
+          alignItems: 'baseline',
+        }}
+      >
+        <Box
+          sx={{
+            minWidth: '80px',
+            maxWidth: '80px',
+            textAlign: 'right',
+          }}
+        >
+          <Typography
+            sx={{
+              fontSize: '24px',
+              fontWeight: 600,
+              lineHeight: 1,
+            }}
+          >
+            {props.lastValue}
+          </Typography>
+        </Box>
+        <Box
+          sx={{
+            minWidth: '60px',
+            maxWidth: '60px',
+          }}
+        >
+          <Typography
+            sx={{
+              lineHeight: 1,
+            }}
+          >
+            {props.title === 'Ori'
+              ? 'Ori'
+              : props.title === 'Sp02'
+                ? '% Sp02'
+                : 'lpm'}
+          </Typography>
+        </Box>
+      </Box>
     </Box>
   );
-
-  return <>{monitorView}</>;
 };
 
 export default MonitorChart;

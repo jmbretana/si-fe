@@ -20,7 +20,7 @@ export function ReactECharts({
   settings,
   loading,
   theme,
-}: ReactEChartsProps): JSX.Element {
+}: ReactEChartsProps): React.ReactElement {
   const chartRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

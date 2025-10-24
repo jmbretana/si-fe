@@ -43,7 +43,7 @@ export interface FCUpdateInput {
 // SP
 
 export interface controlDataSp {
-  id?: string;
+  id?: number;
   sp: number;
   spSeconds: number;
   spMinutes?: number;

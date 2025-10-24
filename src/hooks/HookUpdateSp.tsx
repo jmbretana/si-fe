@@ -18,7 +18,7 @@ export const HookUpdateSp = () => {
     try {
       setLoadingDataSp(true);
       const data: any = await spService.getData();
-      setDataSp(data);
+      setDataSp(data.data);
     } catch (error: any) {
       console.log(error);
       setErrorSp(error.response?.data?.error?.message || error.message);
@@ -46,7 +46,7 @@ export const HookUpdateSp = () => {
       await spService.reset();
 
       const control: controlDataSp = {
-        id: 'sp',
+        id: 1,
         sp: 100,
         spSeconds: 1,
       };
