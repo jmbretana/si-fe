@@ -76,44 +76,56 @@ const ControlComponent: React.FunctionComponent<ControlComponentProps> = (
         flexDirection: { xs: 'column', md: 'row' },
         justifyContent: 'space-between',
         alignItems: { xs: 'stretch', md: 'center' },
-        gap: 2,
+        gap: 3,
         p: 2,
       }}
     >
       <Box
         sx={{
-          minWidth: { xs: '100%', md: '200px' },
-          maxWidth: { xs: '100%', md: '200px' },
+          borderRadius: '8px',
+          backgroundColor: 'rgba(255, 255, 255, 0.05)',
+          padding: '16px',
+          minWidth: { xs: '100%', md: '300px' },
+          flex: { md: 1 },
+          display: 'flex',
+          height: '100%',
         }}
       >
-        <Typography
-          variant="h6"
+        <Box
           sx={{
-            color: 'rgb(187, 187, 187)',
-            fontSize: '2.5em',
+            minWidth: { xs: '100%', md: '200px' },
+            maxWidth: { xs: '100%', md: '200px' },
           }}
         >
-          {props.title}
-        </Typography>
-      </Box>
+          <Typography
+            variant="h6"
+            sx={{
+              color: 'rgb(187, 187, 187)',
+              fontSize: '2.5em',
+            }}
+          >
+            {props.title}
+          </Typography>
+        </Box>
 
-      <Box
-        sx={{
-          minWidth: { xs: '100%', md: '150px' },
-          maxWidth: { xs: '100%', md: '150px' },
-          textAlign: 'right',
-        }}
-      >
-        <Typography
-          variant="h2"
+        <Box
           sx={{
-            fontWeight: 700,
+            minWidth: { xs: '100%', md: '150px' },
+            maxWidth: { xs: '100%', md: '150px' },
+            textAlign: 'right',
           }}
         >
-          {props.type === 'ori'
-            ? transformToDecimal(props.newValue)
-            : props.newValue}
-        </Typography>
+          <Typography
+            variant="h2"
+            sx={{
+              fontWeight: 700,
+            }}
+          >
+            {props.type === 'ori'
+              ? transformToDecimal(props.newValue)
+              : props.newValue}
+          </Typography>
+        </Box>
       </Box>
 
       <Box
@@ -122,7 +134,7 @@ const ControlComponent: React.FunctionComponent<ControlComponentProps> = (
           flex: { md: 1 },
         }}
       >
-        <Box display="flex" flexDirection="column" gap={1} >
+        <Box display="flex" flexDirection="column" gap={1}>
           <Box>
             <InputUpDownComponent
               min={props.min}

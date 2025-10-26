@@ -5,6 +5,7 @@ import { clsx } from 'clsx';
 import { transformToDecimal, invertDecimal } from '@utils/utils';
 import { Box, Button, ButtonGroup } from '@mui/material';
 import { Input } from '@common/input';
+import { BorderRight } from '@mui/icons-material';
 
 interface InputUpDownComponentProps {
   value: number;
@@ -86,13 +87,15 @@ const InputUpDownComponent: React.FunctionComponent<
         value={newValue}
         onChange={editValue}
       />
-      <ButtonGroup variant="contained" aria-label="Basic button group">
+      <ButtonGroup variant="outlined">
         <Button
           onClick={() => downValue(newValue)}
           disabled={props.disabled}
           color="inherit"
           sx={{
             height: '35px',
+            backgroundColor: '#666',
+            border: '1px solid #000',
           }}
         >
           <FaArrowCircleDown />
@@ -100,9 +103,12 @@ const InputUpDownComponent: React.FunctionComponent<
         <Button
           onClick={() => upValue(newValue)}
           disabled={props.disabled}
-          color="success"
+          color="inherit"
           sx={{
             height: '35px',
+            backgroundColor: '#333',
+
+            border: '1px solid #000',
           }}
         >
           <FaArrowCircleUp />
