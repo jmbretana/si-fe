@@ -13,7 +13,7 @@ import { transformToDecimal } from '../../utils/utils';
 import Save from '@mui/icons-material/Save';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Grid, Slider, Typography } from '@mui/material';
 interface ControlComponentProps {
   title: string | React.ReactNode;
   min: number;
@@ -122,7 +122,7 @@ const ControlComponent: React.FunctionComponent<ControlComponentProps> = (
           flex: { md: 1 },
         }}
       >
-        <Box display="flex" flexDirection="column" gap={1}>
+        <Box display="flex" flexDirection="column" gap={1} >
           <Box>
             <InputUpDownComponent
               min={props.min}
@@ -135,15 +135,15 @@ const ControlComponent: React.FunctionComponent<ControlComponentProps> = (
             />
           </Box>
           <Box>
-            <input
-              type="range"
-              className="form-range"
-              id="range"
+            <Slider
               min={props.min}
               max={props.max}
-              step="1"
               value={props.newValue}
-              onChange={(e) => onChangeValue(Number(e.target.value))}
+              onChange={(e, newValue) =>
+                onChangeValue(
+                  Array.isArray(newValue) ? newValue[0] : (newValue as number),
+                )
+              }
               disabled={props.disabled}
               style={{
                 width: '100%',
@@ -161,7 +161,6 @@ const ControlComponent: React.FunctionComponent<ControlComponentProps> = (
         </Box>
       </Box>
 
-      {/* Botón de guardar - responsive */}
       <Box
         sx={{
           minWidth: { xs: '100%', md: '120px' },
