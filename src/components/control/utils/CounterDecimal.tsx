@@ -1,24 +1,7 @@
-import { useEffect, useState } from "react";
-import React from "react";
-import { transformToDecimal } from "../../../utils/utils";
-import Box from "@mui/system/Box";
-
-/*
-    container: {
-      display: "flex",
-      alignItems: "center",
-    },
-    counter: {
-      textAlign: "right",
-      width: "180px",
-    },
-    title: {
-      color: "#bbb",
-      fontSize: "20px",
-      paddingLeft: "3px",
-      width: "100px",
-    },
-*/
+import { useEffect, useState } from 'react';
+import React from 'react';
+import { transformToDecimal } from '../../../utils/utils';
+import BoxCounter from './BoxCounter';
 
 interface CounterDecimalProps {
   oldValue?: number;
@@ -30,7 +13,7 @@ interface CounterDecimalProps {
 }
 
 const CounterDecimalComponent: React.FunctionComponent<CounterDecimalProps> = (
-  props
+  props,
 ) => {
   const [counter, setCounter] = useState<number | undefined>();
   const [old, setOld] = useState<number>(props.oldValue ? props.oldValue : 0);
@@ -61,7 +44,7 @@ const CounterDecimalComponent: React.FunctionComponent<CounterDecimalProps> = (
   const calculateCounter = (
     oldValue: number,
     newValue: number,
-    seconds: number
+    seconds: number,
   ) => {
     let initialValue = 0;
     let finalValue = 0;
@@ -121,15 +104,7 @@ const CounterDecimalComponent: React.FunctionComponent<CounterDecimalProps> = (
   ///
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
-      <p>{transformToDecimal(counter)}</p>
-      <p>{props.title}</p>
-    </Box>
+    <BoxCounter counter={transformToDecimal(counter)} title={props.title} />
   );
 };
 

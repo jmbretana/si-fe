@@ -1,22 +1,6 @@
-import { useEffect, useState } from "react";
-import React from "react";
-import Box from "@mui/system/Box";
-
-/*
-    container: {
-
-    },
-    counter: {
-      textAlign: "right",
-      width: "170px",
-    },
-    title: {
-      color: "#bbb",
-      fontSize: "20px",
-      paddingLeft: "3px",
-      width: "100px",
-    },
-*/
+import { useEffect, useState } from 'react';
+import React from 'react';
+import BoxCounter from './BoxCounter';
 
 interface CounterProps {
   oldValue: number;
@@ -56,7 +40,7 @@ const CounterComponent: React.FunctionComponent<CounterProps> = (props) => {
   const calculateCounter = (
     oldValue: number,
     newValue: number,
-    seconds: number
+    seconds: number,
   ) => {
     let initialValue = 0;
     let finalValue = 0;
@@ -115,12 +99,7 @@ const CounterComponent: React.FunctionComponent<CounterProps> = (props) => {
 
   ///
 
-  return (
-    <Box sx={{ display: "flex", alignItems: "center" }}>
-      <p>{counter}</p>
-      <p>{props.title}</p>
-    </Box>
-  );
+  return <BoxCounter counter={counter} title={props.title} />;
 };
 
 export default CounterComponent;

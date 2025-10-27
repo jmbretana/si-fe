@@ -211,6 +211,7 @@ const ControlComponent: React.FunctionComponent<ControlComponentProps> = (
             maxWidth: { xs: '100%', md: '180px' },
             textAlign: { xs: 'center', md: 'right' },
           }}
+          gap={2}
         >
           <h1 className="display-1 text-white fw-bold">
             {props.type === 'other' && (
