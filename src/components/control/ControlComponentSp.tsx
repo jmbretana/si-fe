@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import React from 'react';
-import { controlDataSp } from '../../interfaces';
-import { HookUpdateSp } from '../../hooks/HookUpdateSp';
+import { controlDataSp } from '@interfaces';
+import { HookUpdateSp } from '@hooks/HookUpdateSp';
 import ControlComponent from './ControlComponent';
 interface SpProps {
   disabled?: boolean;

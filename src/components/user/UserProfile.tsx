@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Avatar,
   Box,
@@ -15,16 +15,16 @@ import {
   IconButton,
   TextField,
   Typography,
-} from "@mui/material";
+} from '@mui/material';
 import {
   Edit as EditIcon,
   Person as PersonIcon,
   Security as SecurityIcon,
-} from "@mui/icons-material";
-import { COLORS } from "@values/colors";
-import { useAuth } from "../../hooks/useAuth";
-import { AuthUser } from "@interfaces";
-import { logger } from "@utils/logger";
+} from '@mui/icons-material';
+import { COLORS } from '@values/colors';
+import { useAuth } from '@hooks/useAuth';
+import { AuthUser } from '@interfaces';
+import { logger } from '@utils/logger';
 
 interface UserProfileProps {
   onClose?: () => void;
@@ -44,9 +44,9 @@ const UserProfile: React.FC<UserProfileProps> = ({
 
   const handleEditClick = () => {
     setEditData({
-      name: user?.name || "",
-      surname: user?.surname || "",
-      email: user?.email || "",
+      name: user?.name || '',
+      surname: user?.surname || '',
+      email: user?.email || '',
     });
     setIsEditing(true);
   };
@@ -58,9 +58,9 @@ const UserProfile: React.FC<UserProfileProps> = ({
       setIsSaving(true);
       await updateUser(editData);
       setIsEditing(false);
-      logger.info("User profile updated successfully");
+      logger.info('User profile updated successfully');
     } catch (error) {
-      logger.error("Error updating user profile:", error);
+      logger.error('Error updating user profile:', error);
     } finally {
       setIsSaving(false);
     }
@@ -94,8 +94,8 @@ const UserProfile: React.FC<UserProfileProps> = ({
               width: 80,
               height: 80,
               bgcolor: COLORS.blue,
-              fontSize: "2rem",
-              fontWeight: "bold",
+              fontSize: '2rem',
+              fontWeight: 'bold',
             }}
             src={user?.avatar}
           >
@@ -149,10 +149,10 @@ const UserProfile: React.FC<UserProfileProps> = ({
                   <TextField
                     fullWidth
                     label="Nombre"
-                    value={isEditing ? editData.name || "" : user?.name || ""}
-                    onChange={handleInputChange("name")}
+                    value={isEditing ? editData.name || '' : user?.name || ''}
+                    onChange={handleInputChange('name')}
                     disabled={!isEditing}
-                    variant={isEditing ? "outlined" : "standard"}
+                    variant={isEditing ? 'outlined' : 'standard'}
                     InputProps={{
                       readOnly: !isEditing,
                     }}
@@ -164,11 +164,11 @@ const UserProfile: React.FC<UserProfileProps> = ({
                     fullWidth
                     label="Apellido"
                     value={
-                      isEditing ? editData.surname || "" : user?.surname || ""
+                      isEditing ? editData.surname || '' : user?.surname || ''
                     }
-                    onChange={handleInputChange("surname")}
+                    onChange={handleInputChange('surname')}
                     disabled={!isEditing}
-                    variant={isEditing ? "outlined" : "standard"}
+                    variant={isEditing ? 'outlined' : 'standard'}
                     InputProps={{
                       readOnly: !isEditing,
                     }}
@@ -179,10 +179,10 @@ const UserProfile: React.FC<UserProfileProps> = ({
                   <TextField
                     fullWidth
                     label="Email"
-                    value={isEditing ? editData.email || "" : user?.email || ""}
-                    onChange={handleInputChange("email")}
+                    value={isEditing ? editData.email || '' : user?.email || ''}
+                    onChange={handleInputChange('email')}
                     disabled={!isEditing}
-                    variant={isEditing ? "outlined" : "standard"}
+                    variant={isEditing ? 'outlined' : 'standard'}
                     InputProps={{
                       readOnly: !isEditing,
                     }}
@@ -197,7 +197,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
                     onClick={handleSave}
                     disabled={isSaving}
                   >
-                    {isSaving ? "Guardando..." : "Guardar"}
+                    {isSaving ? 'Guardando...' : 'Guardar'}
                   </Button>
                   <Button
                     variant="outlined"
@@ -226,7 +226,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
                   <TextField
                     fullWidth
                     label="Usuario"
-                    value={user?.username || ""}
+                    value={user?.username || ''}
                     disabled
                     variant="standard"
                     InputProps={{
@@ -239,7 +239,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
                   <TextField
                     fullWidth
                     label="Rol"
-                    value={user?.role || "Usuario"}
+                    value={user?.role || 'Usuario'}
                     disabled
                     variant="standard"
                     InputProps={{
@@ -278,7 +278,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
         maxWidth="md"
         fullWidth
         PaperProps={{
-          sx: { minHeight: "600px" },
+          sx: { minHeight: '600px' },
         }}
       >
         <DialogTitle>

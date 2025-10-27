@@ -10,7 +10,7 @@ import {
   initializeAuthFromStorage,
   checkTokenValidity,
   refreshToken,
-} from '../middleware/actions/authActions';
+} from '@middleware/actions/authActions';
 
 /**
  * Custom hook for authentication management

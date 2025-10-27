@@ -6,9 +6,9 @@ import ControlComponentOri from './ControlComponentOri';
 import ControlComponentSp from './ControlComponentSp';
 import ControlComponentFc from './ControlComponentFc';
 
-import { updateOri } from '../../hooks/HookUpdateOri';
-import { HookUpdateSp } from '../../hooks/HookUpdateSp';
-import { HookUpdateFc } from '../../hooks/HookUpdateFc';
+import { updateOri } from '@hooks/HookUpdateOri';
+import { HookUpdateSp } from '@hooks/HookUpdateSp';
+import { HookUpdateFc } from '@hooks/HookUpdateFc';
 
 import ButtonUI from '../UI/Button';
 import RestartAlt from '@mui/icons-material/RestartAlt';

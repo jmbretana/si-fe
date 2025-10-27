@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import React from 'react';
-import { controlDataOri } from '../../interfaces';
+import { controlDataOri } from '@interfaces';
 
-import { updateOri } from '../../hooks/HookUpdateOri';
+import { updateOri } from '@hooks/HookUpdateOri';
 import ControlComponent from './ControlComponent';
-import Box from '@mui/system/Box';
 
 interface OriProps {
   disabled: boolean;

@@ -53,9 +53,6 @@ const Monitor = () => {
   }, [hourMinutes]);
 
   useEffect(() => {
-    console.log('dataLastOri', dataLastOri);
-    console.log('dataLastSp', dataLastSp);
-    console.log('dataLastFc', dataLastFc);
     if (dataLastOri) {
       setDataLoadOri(dataLastOri);
     }

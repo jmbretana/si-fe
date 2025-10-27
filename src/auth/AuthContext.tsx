@@ -1,6 +1,6 @@
 // AuthContext.tsx - Updated to use Redux
 import React, { createContext, ReactNode, useContext, useEffect } from "react";
-import { useAuth as useAuthHook } from "../hooks/useAuth";
+import { useAuth as useAuthHook } from "@hooks/useAuth";
 import { AuthUser, LoginCredentials } from "@interfaces";
 import { logger } from "@utils/logger";
 import { SESSION_CONFIG } from "@utils/constants";
@@ -104,4 +104,4 @@ export const useAuth = (): AuthContextType => {
 };
 
 // Export the new hook for direct use (recommended)
-export { useAuth as useAuthHook } from "../hooks/useAuth";
+export { useAuth as useAuthHook } from "@hooks/useAuth";

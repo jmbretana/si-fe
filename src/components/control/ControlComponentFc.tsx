@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import React from 'react';
-import { controlDataFc } from '../../interfaces';
-import { HookUpdateFc } from '../../hooks/HookUpdateFc';
+import { controlDataFc } from '@interfaces';
+import { HookUpdateFc } from '@hooks/HookUpdateFc';
 import ControlComponent from './ControlComponent';
 
 const ControlComponentFc: React.FunctionComponent = () => {

@@ -14,7 +14,7 @@ import {
 import { capitalizeFirstLetter } from '@utils/utils';
 // import { useAuth } from "@auth/AuthContext";
 // Alternativa: usar el hook directo de Redux
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '@hooks/useAuth';
 
 import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsIcon from '@mui/icons-material/Settings';
