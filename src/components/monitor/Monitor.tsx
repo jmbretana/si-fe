@@ -1,9 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { controlDataOri, controlDataFc, controlDataSp } from '@interfaces';
-import { updateOri } from '@hooks/HookUpdateOri';
-import { HookUpdateSp } from '@hooks/HookUpdateSp';
-import { HookUpdateFc } from '@hooks/HookUpdateFc';
 
 import Box from '@mui/system/Box';
 import moment from 'moment';
