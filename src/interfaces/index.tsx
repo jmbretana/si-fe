@@ -2,6 +2,23 @@ export interface Action {
   payload?: object;
   type: string;
 }
+
+export interface Reset {
+  ori: controlDataOri;
+  fc: controlDataFc;
+  sp: controlDataSp;
+}
+
+export interface Unify {
+  ori: number;
+  oriSeconds: number;
+  fc: number;
+  fcSeconds: number;
+  sp: number;
+  spSeconds: number;
+  saturacion: number;
+}
+
 export interface controlData {
   id: string;
   value: number;

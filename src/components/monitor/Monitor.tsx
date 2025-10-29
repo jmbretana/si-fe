@@ -15,9 +15,15 @@ import MonitorComponentOri from '../monitor/MonitorComponentOri';
 import { MONITOR_TIME_REFRESH } from '@constants/global';
 import MonitorHeart from './MonitorHeart';
 
+import { getUnify } from 'src/middleware/actions/unifyActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState, AppDispatch } from 'src/middleware/store/store';
+
 const FORMAT = 'HH:mm:ss';
 
 const Monitor = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
   const initialHourMinutes = () => {
     const now = new Date();
     const fechaHora = moment(now, FORMAT);
@@ -31,9 +37,9 @@ const Monitor = () => {
   const [hourMinutes, setHourMinutes] = useState<string>(initialHourMinutes());
   const [showLoading, setShowLoading] = useState<boolean>(true);
 
-  const { dataLastOri, getLastOri, loadingDataOri } = updateOri();
-  const { dataLastSp, getLastSp, loadingDataSp } = HookUpdateSp();
-  const { dataLastFc, getLastFc, loadingDataFc } = HookUpdateFc();
+  const { statusUnify, dataUnify } = useSelector(
+    (state: RootState) => state.unify,
+  );
 
   //
 
@@ -47,28 +53,38 @@ const Monitor = () => {
   }, []);
 
   useEffect(() => {
-    getLastOri();
-    getLastFc();
-    getLastSp();
+    dispatch(getUnify());
   }, [hourMinutes]);
 
   useEffect(() => {
-    if (dataLastOri) {
-      setDataLoadOri(dataLastOri);
+    if (dataUnify) {
+      setDataLoadOri({
+        ori: dataUnify.ori,
+        oriSeconds: dataUnify.oriSeconds,
+        id: 1,
+      });
     }
 
-    if (dataLastSp) {
-      setDataLoadSp(dataLastSp);
+    if (dataUnify) {
+      setDataLoadSp({
+        sp: dataUnify.sp,
+        spSeconds: dataUnify.spSeconds,
+        id: 2,
+      });
     }
 
-    if (dataLastFc) {
-      setDataLoadFc(dataLastFc);
+    if (dataUnify?.fc) {
+      setDataLoadFc({
+        id: '3',
+        fc: dataUnify.fc,
+        fcSeconds: dataUnify.fcSeconds,
+      });
     }
 
-    if (dataLastFc && dataLastOri && dataLastSp) {
+    if (dataUnify?.fc && dataUnify?.ori && dataUnify?.sp) {
       setShowLoading(false);
     }
-  }, [dataLastOri, dataLastFc, dataLastSp]);
+  }, [dataUnify]);
 
   ///
 
@@ -96,7 +112,7 @@ const Monitor = () => {
         maxValue={1}
         dataLoad={dataLoadOri!}
         start={true}
-        loading={loadingDataOri}
+        loading={false}
         hourMinutes={hourMinutes!}
       />
     </Box>
@@ -118,7 +134,7 @@ const Monitor = () => {
           maxValue={100}
           value={dataLoadSp.sp!}
           start={true}
-          loading={loadingDataSp}
+          loading={false}
           hourMinutes={hourMinutes!}
         />
       )}
@@ -139,9 +155,9 @@ const Monitor = () => {
           title={'Fc'}
           minValue={1}
           maxValue={300}
-          value={dataLastFc!.fc!}
+          value={dataLoadFc!.fc!}
           start={true}
-          loading={loadingDataFc}
+          loading={false}
           hourMinutes={hourMinutes!}
         />
       )}

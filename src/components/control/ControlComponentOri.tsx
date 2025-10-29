@@ -1,16 +1,24 @@
 import { useEffect, useState } from 'react';
 import React from 'react';
-import { controlDataOri } from '@interfaces';
 
 import { updateOri } from '@hooks/HookUpdateOri';
 import ControlComponent from './ControlComponent';
 
+import { controlDataOri, Unify } from '@interfaces';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState, AppDispatch } from 'src/middleware/store/store';
+import { updateUnify } from 'src/middleware/actions/unifyActions';
+import { UNIFY_SUCCESS } from '@UnifyActionTypes';
+
 interface OriProps {
   disabled: boolean;
+  unify: Unify;
   //
 }
 
 const ControlComponentOri: React.FunctionComponent<OriProps> = (props) => {
+  const dispatch = useDispatch<AppDispatch>();
+
   const [disabledButton, setDisabledButton] = useState<boolean>(true);
 
   const [newControl, setNewControl] = useState<controlDataOri>();
@@ -19,37 +27,18 @@ const ControlComponentOri: React.FunctionComponent<OriProps> = (props) => {
   const [newValue, setNewValue] = useState<number>(0);
   const [oldValue, setOldValue] = useState<number>(0);
 
-  const {
-    dataLastOri,
-    getLastOri,
-    addDataOri,
-    loadingResetOri,
-    resetDataOri,
-    updateDataOri,
-  } = updateOri();
+  const { loadingResetOri, resetDataOri } = updateOri();
 
   useEffect(() => {
-    if (!dataLastOri) getLastOri();
-  }, []);
-
-  useEffect(() => {
-    if (props.disabled) resetDataOri();
-  }, [props.disabled]);
-
-  useEffect(() => {
-    if (dataLastOri) {
-      setOldValue(dataLastOri.ori);
-      setNewValue(dataLastOri.ori);
-      setNewControl(dataLastOri);
-      changeSecondsHandler(dataLastOri.oriSeconds);
-    }
-  }, [dataLastOri]);
-
-  useEffect(() => {
-    if (loadingResetOri) {
-      getLastOri();
-    }
-  }, [loadingResetOri]);
+    setOldValue(props.unify.ori);
+    setNewValue(props.unify.ori);
+    setNewControl({
+      ori: props.unify.ori,
+      oriSeconds: props.unify.oriSeconds,
+      id: 1,
+    });
+    changeSecondsHandler(props.unify.oriSeconds);
+  }, [props.unify]);
 
   useEffect(() => {
     newValue === oldValue ? setDisabledButton(true) : setDisabledButton(false);
@@ -59,15 +48,14 @@ const ControlComponentOri: React.FunctionComponent<OriProps> = (props) => {
 
   const saveHandler = () => {
     if (newControl) {
-      if (newSeconds === 1)
-        addDataOri({
-          id: 1,
-          ori: newControl.ori,
-          oriSeconds: 1,
-        });
+      const unify: Unify = {
+        ...props.unify,
+        ori: newControl.ori,
+        oriSeconds: newSeconds === 1 ? 1 : newControl.oriSeconds,
+      };
 
       setNewCounter(newControl.ori);
-      updateDataOri(newControl);
+      dispatch(updateUnify(unify));
 
       setOldValue(newControl.ori);
       setNewValue(newControl.ori);
@@ -76,11 +64,12 @@ const ControlComponentOri: React.FunctionComponent<OriProps> = (props) => {
 
   const changeCounterHandler = (oriCounter: number) => {
     if (newControl && newSeconds > 1) {
-      addDataOri({
-        id: 1,
+      const unify: Unify = {
+        ...props.unify,
         ori: oriCounter,
         oriSeconds: 1,
-      });
+      };
+      dispatch(updateUnify(unify));
     }
   };
 

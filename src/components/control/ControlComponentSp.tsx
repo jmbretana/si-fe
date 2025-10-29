@@ -3,13 +3,22 @@ import React from 'react';
 import { controlDataSp } from '@interfaces';
 import { HookUpdateSp } from '@hooks/HookUpdateSp';
 import ControlComponent from './ControlComponent';
+
+import { Unify } from '@interfaces';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState, AppDispatch } from 'src/middleware/store/store';
+import { updateUnify } from 'src/middleware/actions/unifyActions';
+import { UNIFY_SUCCESS } from '@UnifyActionTypes';
 interface SpProps {
   disabled?: boolean;
+  unify: Unify;
   //
   onDisableOri: (disable: boolean) => void;
 }
 
 const ControlComponentSp: React.FunctionComponent<SpProps> = (props) => {
+  const dispatch = useDispatch<AppDispatch>();
+
   const [disabledButton, setDisabled] = useState<boolean>(true);
   const [newControl, setNewControl] = useState<controlDataSp>();
   const [newCounter, setNewCounter] = useState<number>();
@@ -17,50 +26,22 @@ const ControlComponentSp: React.FunctionComponent<SpProps> = (props) => {
   const [newValue, setNewValue] = useState<number>(0);
   const [oldValue, setOldValue] = useState<number>(0);
 
-  const {
-    dataSp,
-    getDataSp,
-    dataLastSp,
-    getLastSp,
-    addDataSp,
-    loadingResetSp,
-    savingSp,
-    updateDataSp,
-  } = HookUpdateSp();
+  const { addDataSp, loadingResetSp, savingSp, updateDataSp } = HookUpdateSp();
 
   useEffect(() => {
-    if (!dataSp) getDataSp();
-    if (!dataLastSp) getLastSp();
-  }, []);
+    if (props.unify.sp) {
+      setOldValue(props.unify.sp);
+      setNewValue(props.unify.sp);
+      changeSecondsHandler(props.unify.spSeconds);
+      setNewControl({
+        sp: props.unify.sp,
+        spSeconds: props.unify.spSeconds,
+        id: 1,
+      });
 
-  useEffect(() => {
-    if (loadingResetSp) {
-      getDataSp();
-      getLastSp();
+      if (props.unify.sp < 100) props.onDisableOri(true);
     }
-  }, [loadingResetSp]);
-
-  useEffect(() => {
-    if (dataSp) {
-      setOldValue(dataSp.sp);
-      setNewValue(dataSp.sp);
-      changeSecondsHandler(dataSp.spSeconds);
-
-      if (dataSp.sp < 100) props.onDisableOri(true);
-    }
-  }, [dataSp]);
-
-  useEffect(() => {
-    if (dataLastSp) {
-      setNewControl(dataLastSp);
-    }
-  }, [dataLastSp]);
-
-  useEffect(() => {
-    if (!savingSp) {
-      getLastSp();
-    }
-  }, [savingSp]);
+  }, [props.unify.sp]);
 
   useEffect(() => {
     oldValue === newValue ? setDisabled(true) : setDisabled(false);
@@ -70,16 +51,14 @@ const ControlComponentSp: React.FunctionComponent<SpProps> = (props) => {
 
   const saveHandler = () => {
     if (newControl) {
-      if (newSeconds === 1) {
-        addDataSp({
-          id: 1,
-          sp: newControl.sp,
-          spSeconds: 1,
-        });
-      }
+      const unify: Unify = {
+        ...props.unify,
+        sp: newControl.sp,
+        spSeconds: newSeconds === 1 ? 1 : newControl.spSeconds,
+      };
 
       setNewCounter(newControl.sp);
-      updateDataSp(newControl);
+      dispatch(updateUnify(unify));
 
       setOldValue(newControl.sp);
       setNewValue(newControl.sp);

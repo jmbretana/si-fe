@@ -1,48 +1,66 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import ControlComponentOri from './ControlComponentOri';
 import ControlComponentSp from './ControlComponentSp';
 import ControlComponentFc from './ControlComponentFc';
 
-import { updateOri } from '@hooks/HookUpdateOri';
-import { HookUpdateSp } from '@hooks/HookUpdateSp';
-import { HookUpdateFc } from '@hooks/HookUpdateFc';
-
 import ButtonUI from '../UI/Button';
 import RestartAlt from '@mui/icons-material/RestartAlt';
 
 import Box from '@mui/system/Box';
+import { Loading } from '@common';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState, AppDispatch } from 'src/middleware/store/store';
+
+import { makeReset } from 'src/middleware/actions/resetActions';
+import { RESET_SUCCESS } from 'src/middleware/types/ResetActionTypes';
+
+import { getUnify } from 'src/middleware/actions/unifyActions';
+import { UNIFY_SUCCESS } from '@UnifyActionTypes';
 
 const Control = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const hasCalledUnify = useRef(false);
+
   const [disabledOri, setDisabledOri] = useState<boolean>(false);
   const [showLoading, setShowLoading] = useState<boolean>(false);
 
-  const { getLastOri, loadingResetOri, resetDataOri } = updateOri();
-  const { getLastSp, loadingResetSp, resetDataSp } = HookUpdateSp();
-  const { getLastFc, loadingResetFc, resetDataFc } = HookUpdateFc();
+  const { status, data, error, isLoading } = useSelector(
+    (state: RootState) => state.reset,
+  );
+
+  const { statusUnify, dataUnify } = useSelector(
+    (state: RootState) => state.unify,
+  );
+
+  ///
+  useEffect(() => {
+    if (!hasCalledUnify.current) {
+      hasCalledUnify.current = true;
+      dispatch(getUnify());
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (statusUnify === UNIFY_SUCCESS) {
+      setShowLoading(false);
+    }
+  }, [statusUnify]);
+
+  useEffect(() => {
+    if (status === RESET_SUCCESS) {
+      setShowLoading(false);
+    }
+  }, [isLoading, status]);
 
   //
 
-  useEffect(() => {
-    if (loadingResetOri && loadingResetSp && loadingResetFc) {
-      getLastOri();
-      getLastFc();
-      getLastSp();
-
-      setShowLoading(false);
-    }
-  }, [loadingResetOri, loadingResetSp, loadingResetFc]);
-
-  ///
-
   const iniciarHandler = () => {
     setShowLoading(true);
-
-    resetDataOri();
-    resetDataSp();
-    resetDataFc();
+    dispatch(makeReset());
   };
 
   const onDisableOriHandler = (disabled: boolean) => {
@@ -52,50 +70,7 @@ const Control = () => {
 
   const loadingView = (
     <Box>
-      <span
-        className="spinner-border spinner-border-sm loading-data"
-        role="status"
-        aria-hidden="true"
-      ></span>
-    </Box>
-  );
-
-  const oriView = (
-    <Box
-      sx={{
-        border: '2px solid #444',
-        borderRadius: '10px',
-        padding: '5px',
-        marginBottom: '10px',
-      }}
-    >
-      <ControlComponentOri disabled={disabledOri} />
-    </Box>
-  );
-
-  const spView = (
-    <Box
-      sx={{
-        border: '2px solid #444',
-        borderRadius: '10px',
-        padding: '5px',
-        marginBottom: '10px',
-      }}
-    >
-      <ControlComponentSp onDisableOri={onDisableOriHandler} />
-    </Box>
-  );
-
-  const fcView = (
-    <Box
-      sx={{
-        border: '2px solid #444',
-        borderRadius: '10px',
-        padding: '5px',
-        marginBottom: '10px',
-      }}
-    >
-      <ControlComponentFc />
+      <Loading />
     </Box>
   );
 
@@ -123,9 +98,47 @@ const Control = () => {
             />
           </Box>
 
-          {oriView}
-          {spView}
-          {fcView}
+          {dataUnify && (
+            <Box
+              sx={{
+                border: '2px solid #444',
+                borderRadius: '10px',
+                padding: '5px',
+                marginBottom: '10px',
+              }}
+            >
+              <ControlComponentOri unify={dataUnify} disabled={disabledOri} />
+            </Box>
+          )}
+
+          {dataUnify && (
+            <Box
+              sx={{
+                border: '2px solid #444',
+                borderRadius: '10px',
+                padding: '5px',
+                marginBottom: '10px',
+              }}
+            >
+              <ControlComponentSp
+                unify={dataUnify}
+                onDisableOri={onDisableOriHandler}
+              />
+            </Box>
+          )}
+
+          {dataUnify && (
+            <Box
+              sx={{
+                border: '2px solid #444',
+                borderRadius: '10px',
+                padding: '5px',
+                marginBottom: '10px',
+              }}
+            >
+              <ControlComponentFc unify={dataUnify} />
+            </Box>
+          )}
         </Box>
       )}
     </Box>

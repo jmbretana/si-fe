@@ -12,7 +12,7 @@ import {
 import { controlDataOri } from '@interfaces';
 
 // Acción para iniciar una solicitud
-export const makeRequestAccount = () => {
+export const makeRequestOri = () => {
   return {
     type: ORI_MAKE_REQ,
   };

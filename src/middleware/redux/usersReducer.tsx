@@ -4,11 +4,11 @@ import {
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAIL,
   USER_LOGOUT_SUCCESS,
-} from "src/middleware/types/UserActionTypes";
-import { Action, User } from "@interfaces";
+} from 'src/middleware/types/UserActionTypes';
+import { Action, AuthUser } from '@interfaces';
 
 interface UsersState {
-  user: User | undefined;
+  user: AuthUser | undefined;
   status: string;
   error: string | null;
   isLoading: boolean;
@@ -24,7 +24,7 @@ const initialState: UsersState = {
 // Reducer que maneja el estado de products
 export const UserReducer = (
   state = initialState,
-  action: Action
+  action: Action,
 ): UsersState => {
   switch (action.type) {
     case USER_INITIAL:
@@ -42,7 +42,7 @@ export const UserReducer = (
         ...state,
         status: USER_LOGIN_SUCCESS,
         isLoading: false, // Finaliza la solicitud con éxito
-        user: action.payload as User, // Actualiza la lista de products
+        user: action.payload as AuthUser, // Actualiza la lista de products
       };
 
     case USER_LOGIN_FAIL:
@@ -58,7 +58,7 @@ export const UserReducer = (
         ...state,
         status: USER_LOGOUT_SUCCESS,
         isLoading: false, // Finaliza la solicitud con éxito
-        user: action.payload as User, // Actualiza la lista de products
+        user: action.payload as AuthUser, // Actualiza la lista de products
       };
 
     default:

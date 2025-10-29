@@ -4,7 +4,20 @@ import { controlDataFc } from '@interfaces';
 import { HookUpdateFc } from '@hooks/HookUpdateFc';
 import ControlComponent from './ControlComponent';
 
-const ControlComponentFc: React.FunctionComponent = () => {
+import { Unify } from '@interfaces';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState, AppDispatch } from 'src/middleware/store/store';
+import { updateUnify } from 'src/middleware/actions/unifyActions';
+import { UNIFY_SUCCESS } from '@UnifyActionTypes';
+
+interface FcProps {
+  unify: Unify;
+  //
+}
+
+const ControlComponentFc: React.FunctionComponent<FcProps> = (props) => {
+  const dispatch = useDispatch<AppDispatch>();
+
   const [disabledButton, setDisabledButton] = useState<boolean>(true);
   const [newControl, setNewControl] = useState<controlDataFc>();
   const [newSeconds, setNewSeconds] = useState<number>(1);
@@ -12,50 +25,20 @@ const ControlComponentFc: React.FunctionComponent = () => {
   const [newValue, setNewValue] = useState<number>(0);
   const [newCounter, setNewCounter] = useState<number>();
 
-  const {
-    dataFc,
-    getDataFc,
-
-    dataLastFc,
-    getLastFc,
-
-    addDataFc,
-    loadingResetFc,
-    savingFc,
-    updateDataFc,
-  } = HookUpdateFc();
+  const { addDataFc, loadingResetFc, savingFc, updateDataFc } = HookUpdateFc();
 
   useEffect(() => {
-    if (!dataFc) getDataFc();
-    if (!dataLastFc) getLastFc();
-  }, []);
-
-  useEffect(() => {
-    if (loadingResetFc) {
-      getDataFc();
-      getLastFc();
+    if (props.unify.fc) {
+      setOldValue(props.unify.fc);
+      setNewValue(props.unify.fc);
+      setNewControl({
+        fc: props.unify.fc,
+        fcSeconds: props.unify.fcSeconds,
+        id: 'fc',
+      });
+      changeSecondsHandler(props.unify.fcSeconds);
     }
-  }, [loadingResetFc]);
-
-  useEffect(() => {
-    if (dataFc) {
-      setOldValue(dataFc.fc);
-      setNewValue(dataFc.fc);
-      changeSecondsHandler(dataFc.fcSeconds);
-    }
-  }, [dataFc]);
-
-  useEffect(() => {
-    if (dataLastFc) {
-      setNewControl(dataLastFc);
-    }
-  }, [dataLastFc]);
-
-  useEffect(() => {
-    if (!savingFc) {
-      getLastFc();
-    }
-  }, [savingFc]);
+  }, [props.unify.fc]);
 
   useEffect(() => {
     oldValue === newValue ? setDisabledButton(true) : setDisabledButton(false);
@@ -65,16 +48,14 @@ const ControlComponentFc: React.FunctionComponent = () => {
 
   const saveHandler = () => {
     if (newControl) {
-      if (newSeconds === 1) {
-        addDataFc({
-          id: 'fc',
-          fc: newControl.fc,
-          fcSeconds: 1,
-        });
-      }
-      setNewCounter(newControl.fc);
-      updateDataFc(newControl);
+      const unify: Unify = {
+        ...props.unify,
+        fc: newControl.fc,
+        fcSeconds: newSeconds === 1 ? 1 : newControl.fcSeconds,
+      };
 
+      setNewCounter(newControl.fc);
+      dispatch(updateUnify(unify));
       setOldValue(newControl.fc);
       setNewValue(newControl.fc);
     }

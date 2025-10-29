@@ -52,8 +52,6 @@ export const HookUpdateSp = () => {
       };
 
       await updateDataSp(control);
-      await getDataSp();
-      await getLastSp();
     } catch (error: any) {
       console.log(error);
       setErrorSp(error.response?.data?.error?.code || error.message);

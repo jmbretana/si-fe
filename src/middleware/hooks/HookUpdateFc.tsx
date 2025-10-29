@@ -42,18 +42,6 @@ export const HookUpdateFc = () => {
     }
   };
 
-  const deleteDataFc = async (id: string) => {
-    try {
-      setLoadingDataFc(true);
-      await fcService.deleteHistory(id);
-    } catch (error: any) {
-      console.log(error);
-      setErrorFc(error.response?.data?.error?.code || error.message);
-    } finally {
-      setLoadingDataFc(false);
-    }
-  };
-
   const resetDataFc = async () => {
     try {
       setLoadingResetFc(true);

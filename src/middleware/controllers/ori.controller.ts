@@ -32,7 +32,6 @@ class OriControllerClass extends BaseController {
    * Update ORI data
    */
   async update(data: controlDataOri): Promise<controlDataOri> {
-    console.log('Updating ORI data:', data);
     return this.put<controlDataOri, controlDataOri>('', data);
   }
 

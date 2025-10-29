@@ -56,8 +56,6 @@ export const updateOri = () => {
   const resetDataOri = async () => {
     try {
       setLoadingResetOri(true);
-      await oriService.reset();
-
       const control: controlDataOri = {
         id: 1,
         ori: 0,
@@ -65,8 +63,6 @@ export const updateOri = () => {
       };
 
       await updateDataOri(control);
-      await getDataOri();
-      await getLastOri();
     } catch (error: any) {
       console.log(error);
       setErrorOri(error.response?.data?.error?.code || error.message);

@@ -43,10 +43,6 @@
 
       "@OriActionTypes": ["src/middleware/types/OriActionTypes"],
 
-      "@AccountActionTypes": ["src/middleware/types/AccountActionTypes"],
-      "@AccountProviderActionTypes": [
-        "src/middleware/types/AccountProviderActionTypes"
-      ],
       "@BudgetActionTypes": ["src/middleware/types/BudgetActionTypes"],
       "@ClientActionTypes": ["src/middleware/types/ClientActionTypes"],
       "@ComprobanteProviderActionTypes": [
@@ -59,6 +55,9 @@
 
       "@SnackActionTypes": ["src/middleware/types/SnackActionTypes"],
       "@UserActionTypes": ["src/middleware/types/UserActionTypes"],
+
+      "@ResetActionTypes": ["src/middleware/types/ResetActionTypes"],
+      "@UnifyActionTypes": ["src/middleware/types/UnifyActionTypes"],
 
       "@utils": ["src/utils"],
       "@utils/*": ["src/utils/*"],
