@@ -16,7 +16,6 @@ export interface Unify {
   fcSeconds: number;
   sp: number;
   spSeconds: number;
-  saturacion: number;
 }
 
 export interface controlData {
@@ -64,20 +63,17 @@ export interface controlDataSp {
   sp: number;
   spSeconds: number;
   spMinutes?: number;
-  saturacion?: number;
 }
 export interface SpHistoryData {
   id: string;
   sp: number;
   spSeconds: number;
   spMinutes: number;
-  saturacion: number;
   timestamp: string;
 }
 
 export interface SpUpdateInput {
   sp: number;
-  saturacion: number;
   spSeconds: number;
   spMinutes: number;
 }

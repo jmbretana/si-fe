@@ -20,15 +20,17 @@ import { RESET_SUCCESS } from 'src/middleware/types/ResetActionTypes';
 
 import { getUnify } from 'src/middleware/actions/unifyActions';
 import { UNIFY_SUCCESS } from '@UnifyActionTypes';
+import { Unify } from '@interfaces';
 
 const Control = () => {
   const dispatch = useDispatch<AppDispatch>();
   const hasCalledUnify = useRef(false);
 
+  const [dataUnifyLoad, setDataUnifyLoad] = useState<Unify>();
   const [disabledOri, setDisabledOri] = useState<boolean>(false);
   const [showLoading, setShowLoading] = useState<boolean>(false);
 
-  const { status, data, error, isLoading } = useSelector(
+  const { status, dataReset, error, isLoading } = useSelector(
     (state: RootState) => state.reset,
   );
 
@@ -46,12 +48,21 @@ const Control = () => {
 
   useEffect(() => {
     if (statusUnify === UNIFY_SUCCESS) {
+      setDataUnifyLoad(dataUnify);
       setShowLoading(false);
     }
   }, [statusUnify]);
 
   useEffect(() => {
     if (status === RESET_SUCCESS) {
+      setDataUnifyLoad({
+        ori: dataReset!.ori.ori,
+        oriSeconds: dataReset!.ori.oriSeconds,
+        sp: dataReset!.sp.sp,
+        spSeconds: dataReset!.sp.spSeconds,
+        fc: dataReset!.fc.fc,
+        fcSeconds: dataReset!.fc.fcSeconds,
+      });
       setShowLoading(false);
     }
   }, [isLoading, status]);
@@ -98,7 +109,7 @@ const Control = () => {
             />
           </Box>
 
-          {dataUnify && (
+          {dataUnifyLoad && (
             <Box
               sx={{
                 border: '2px solid #444',
@@ -107,11 +118,14 @@ const Control = () => {
                 marginBottom: '10px',
               }}
             >
-              <ControlComponentOri unify={dataUnify} disabled={disabledOri} />
+              <ControlComponentOri
+                unify={dataUnifyLoad}
+                disabled={disabledOri}
+              />
             </Box>
           )}
 
-          {dataUnify && (
+          {dataUnifyLoad && (
             <Box
               sx={{
                 border: '2px solid #444',
@@ -121,13 +135,13 @@ const Control = () => {
               }}
             >
               <ControlComponentSp
-                unify={dataUnify}
+                unify={dataUnifyLoad}
                 onDisableOri={onDisableOriHandler}
               />
             </Box>
           )}
 
-          {dataUnify && (
+          {dataUnifyLoad && (
             <Box
               sx={{
                 border: '2px solid #444',
@@ -136,7 +150,7 @@ const Control = () => {
                 marginBottom: '10px',
               }}
             >
-              <ControlComponentFc unify={dataUnify} />
+              <ControlComponentFc unify={dataUnifyLoad} />
             </Box>
           )}
         </Box>

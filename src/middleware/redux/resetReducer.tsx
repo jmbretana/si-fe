@@ -7,13 +7,13 @@ import { Action, Reset } from '@interfaces';
 
 interface ResetState {
   status: string;
-  data: Reset | undefined;
+  dataReset: Reset | undefined;
   error: string | null;
   isLoading: boolean;
 }
 
 const initialState: ResetState = {
-  data: undefined,
+  dataReset: undefined,
   status: RESET_MAKE_REQ,
   error: null,
   isLoading: false,
@@ -33,7 +33,7 @@ export const ResetReducer = (
     case RESET_SUCCESS:
       return {
         ...state,
-        data: action.payload as Reset,
+        dataReset: action.payload as Reset,
         status: RESET_SUCCESS,
         isLoading: false,
       };

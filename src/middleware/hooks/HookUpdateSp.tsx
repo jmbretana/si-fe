@@ -67,7 +67,6 @@ export const HookUpdateSp = () => {
         sp: control.sp,
         spSeconds: control.spSeconds,
         spMinutes: control.spMinutes!,
-        saturacion: control.saturacion!,
       });
     } catch (error: any) {
       console.log(error);
@@ -83,7 +82,6 @@ export const HookUpdateSp = () => {
         sp: control.sp,
         spSeconds: control.spSeconds,
         spMinutes: control.spMinutes!,
-        saturacion: control.saturacion!,
       });
     } catch (error: any) {
       console.log(error);
