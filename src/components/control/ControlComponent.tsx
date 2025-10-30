@@ -75,7 +75,6 @@ const ControlComponent: React.FunctionComponent<ControlComponentProps> = (
         display: 'flex',
         flexDirection: { xs: 'column', md: 'row' },
         justifyContent: 'space-between',
-        alignItems: { xs: 'stretch', md: 'center' },
         gap: 3,
         p: 2,
       }}
@@ -84,17 +83,18 @@ const ControlComponent: React.FunctionComponent<ControlComponentProps> = (
         sx={{
           borderRadius: '8px',
           backgroundColor: 'rgba(255, 255, 255, 0.05)',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
           padding: '16px',
           minWidth: { xs: '100%', md: '300px' },
           flex: { md: 1 },
           display: 'flex',
-          height: '100%',
+          alignItems: { xs: 'stretch', md: 'center' },
         }}
       >
         <Box
           sx={{
-            minWidth: { xs: '100%', md: '200px' },
-            maxWidth: { xs: '100%', md: '200px' },
+            minWidth: { xs: '100%', md: '180px' },
+            maxWidth: { xs: '100%', md: '180px' },
           }}
         >
           <Typography
@@ -132,6 +132,11 @@ const ControlComponent: React.FunctionComponent<ControlComponentProps> = (
         sx={{
           minWidth: { xs: '100%', md: '300px' },
           flex: { md: 1 },
+          borderRadius: '8px',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+
+          backgroundColor: 'rgba(255, 255, 255, 0.05)',
+          padding: '16px',
         }}
       >
         <Box display="flex" flexDirection="column" gap={1}>
@@ -175,8 +180,8 @@ const ControlComponent: React.FunctionComponent<ControlComponentProps> = (
 
       <Box
         sx={{
-          minWidth: { xs: '100%', md: '120px' },
-          maxWidth: { xs: '100%', md: '120px' },
+          borderRadius: '8px',
+          padding: '16px',
         }}
       >
         {!hiddenSM && (
@@ -203,13 +208,18 @@ const ControlComponent: React.FunctionComponent<ControlComponentProps> = (
         )}
       </Box>
 
-      {/* Contador - responsive (solo visible en pantallas grandes) */}
       {!hiddenSM && (
         <Box
           sx={{
             minWidth: { xs: '100%', md: '180px' },
             maxWidth: { xs: '100%', md: '180px' },
             textAlign: { xs: 'center', md: 'right' },
+            borderRadius: '8px',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            backgroundColor: 'rgba(255, 255, 255, 0.05)',
+            padding: '16px',
+            display: 'flex',
+            alignItems: { xs: 'stretch', md: 'center' },
           }}
           gap={2}
         >

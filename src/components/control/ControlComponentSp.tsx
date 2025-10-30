@@ -29,7 +29,7 @@ const ControlComponentSp: React.FunctionComponent<SpProps> = (props) => {
   const { addDataSp, loadingResetSp, savingSp, updateDataSp } = HookUpdateSp();
 
   useEffect(() => {
-    if (props.unify.sp) {
+    if (props.unify) {
       setOldValue(props.unify.sp);
       setNewValue(props.unify.sp);
       changeSecondsHandler(props.unify.spSeconds);
