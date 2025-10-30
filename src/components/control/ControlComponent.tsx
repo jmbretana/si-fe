@@ -95,6 +95,7 @@ const ControlComponent: React.FunctionComponent<ControlComponentProps> = (
           sx={{
             minWidth: { xs: '100%', md: '180px' },
             maxWidth: { xs: '100%', md: '180px' },
+            display: 'flex',
           }}
         >
           <Typography
@@ -184,28 +185,16 @@ const ControlComponent: React.FunctionComponent<ControlComponentProps> = (
           padding: '16px',
         }}
       >
-        {!hiddenSM && (
-          <ButtonUI
-            title={'Update'}
-            saving={saving}
-            disabled={props.disabledButton}
-            color={'success'}
-            variant={'contained'}
-            startIcon={<Save />}
-            //
-            onClick={saveHandler}
-          />
-        )}
-
-        {hiddenSM && (
-          <IconButtonUI
-            color={'success'}
-            disabled={props.disabledButton}
-            icon={<Save />}
-            //
-            onClick={saveHandler}
-          />
-        )}
+        <ButtonUI
+          title={'Update'}
+          saving={saving}
+          disabled={props.disabledButton}
+          color={'success'}
+          variant={'contained'}
+          startIcon={<Save />}
+          //
+          onClick={saveHandler}
+        />
       </Box>
 
       {!hiddenSM && (
